@@ -293,6 +293,10 @@ nav{
 .form-select option{background:var(--bg3);}
 .form-textarea{resize:vertical;min-height:90px;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-ok{display:none;text-align:center;padding:18px;margin-top:16px;border-radius:12px;
+  background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.2);color:#4ade80;font-size:14px;}
+.encargo-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:36px 40px;}
+@media(max-width:600px){.encargo-wrap{padding:24px 18px;}}
 .btn-submit{
   width:100%;padding:14px;border-radius:12px;border:none;cursor:pointer;
   background:linear-gradient(135deg,var(--accent),var(--accent2));
@@ -595,51 +599,74 @@ footer{border-top:1px solid var(--border);padding:36px 0;display:flex;align-item
 </section>
 
 <!-- CONTACTO -->
-<section id="contacto">
-  <div class="sec-label">Contacto</div>
-  <h2 class="sec-h2">Haz tu pedido</h2>
-  <p class="sec-p">Por WhatsApp obtienes respuesta inmediata. O rellena el formulario.</p>
-  <div class="contact-grid">
-    <div class="contact-card wa-card wr">
-      <div class="wa-pill"><svg width="8" height="8" viewBox="0 0 8 8" fill="#4ade80"><circle cx="4" cy="4" r="4"/></svg>Respuesta inmediata</div>
-      <h3 class="contact-h3">WhatsApp<br>directo</h3>
-      <p class="contact-p">La forma más rápida. Cuéntame qué figura, qué tamaño y la cantidad.</p>
-      <a href="https://wa.me/34618648370?text=Hola%20Jaime%2C%20me%20interesan%20las%20figuras%203D.%20%C2%BFPodr%C3%ADas%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" class="btn-wa">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        Escribir a WhatsApp
-      </a>
-    </div>
-    <div class="contact-card wr">
-      <h3 class="contact-h3" style="margin-bottom:8px;">Formulario</h3>
-      <p class="contact-p" style="margin-bottom:18px;">Te respondo en menos de 24h.</p>
-      <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">Nombre *</label><input class="form-input" type="text" name="nombre" placeholder="Tu nombre" required></div>
-          <div class="form-group"><label class="form-label">Teléfono</label><input class="form-input" type="tel" name="telefono" placeholder="6XX XXX XXX"></div>
+<section id="contacto" style="margin-bottom:80px;">
+  <div class="sec-label">✦ Encargo especial · A tu medida</div>
+  <h2 class="sec-h2" style="margin-bottom:12px;">Cuéntame qué necesitas</h2>
+  <p class="sec-p" style="margin-bottom:40px;">Rellena el formulario con los datos de tu figura y el tamaño que buscas.<br>Te respondo por WhatsApp en menos de 24 horas con disponibilidad y presupuesto.</p>
+
+  <div class="encargo-wrap wr">
+    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nombre *</label>
+          <input class="form-input" type="text" name="nombre" placeholder="Tu nombre o apodo" required>
         </div>
-        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" name="email" placeholder="tucorreo@email.com" required></div>
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">Figura</label>
-            <select class="form-select" name="figura">
-              <option value="">Selecciona...</option>
-              <option>Luke Skywalker</option><option>Darth Vader</option>
-              <option>Stormtrooper</option><option>Leia Organa</option>
-              <option>Iron Man</option><option>Batman</option>
-              <option>Superman</option><option>Varias figuras</option>
-            </select>
-          </div>
-          <div class="form-group"><label class="form-label">Tamaño</label>
-            <select class="form-select" name="tamaño">
-              <option value="">Selecciona...</option>
-              <option>10cm · 5€</option><option>15cm · 15€</option><option>20cm · 20€</option>
-            </select>
-          </div>
+        <div class="form-group">
+          <label class="form-label">Teléfono *</label>
+          <input class="form-input" type="tel" name="telefono" placeholder="6XX XXX XXX" required>
         </div>
-        <div class="form-group"><label class="form-label">Mensaje</label><textarea class="form-textarea" name="mensaje" placeholder="Cantidad, alguna duda..."></textarea></div>
-        <input type="hidden" name="_subject" value="Nuevo pedido · Figuras 3D Granada">
-        <button type="submit" class="btn-submit">Enviar pedido ✦</button>
-      </form>
-    </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" name="email" placeholder="tucorreo@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Ciudad / Localidad</label>
+          <input class="form-input" type="text" name="ciudad" placeholder="Ej: Granada, Sevilla...">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Figura que quieres *</label>
+          <input class="form-input" type="text" name="figura" placeholder="Ej: Darth Vader, Iron Man, figura personalizada..." required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tamaño deseado (cm) *</label>
+          <input class="form-input" type="text" name="tamaño" placeholder="Ej: 15 cm, 20 cm..." required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Cantidad aproximada</label>
+          <input class="form-input" type="text" name="cantidad" placeholder="Ej: 1, 5, 10...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">¿Para cuándo la necesitas?</label>
+          <input class="form-input" type="text" name="fecha" placeholder="Ej: antes del 20 de marzo">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Detalles adicionales</label>
+        <textarea class="form-textarea" name="mensaje" placeholder="Acabado, color, pose, si es un regalo, cualquier detalle que quieras añadir..." style="min-height:110px"></textarea>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:6px;">
+        <button type="submit" class="btn-submit" style="margin-top:0">Enviar consulta ✦</button>
+        <a href="https://wa.me/34618648370?text=Hola%20Jaime%2C%20quiero%20encargar%20una%20figura%203D.%20%C2%BFPodr%C3%ADas%20ayudarme%3F" target="_blank" class="btn-wa" style="padding:13px 22px;font-size:12px;margin-top:0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          O escríbeme directo
+        </a>
+      </div>
+
+      <div class="form-ok" id="formOk">✓ ¡Mensaje enviado! Te respondo en menos de 24h por WhatsApp.</div>
+      <input type="hidden" name="_subject" value="Encargo figura 3D · Granada">
+    </form>
   </div>
 </section>
 
@@ -713,12 +740,12 @@ footer{border-top:1px solid var(--border);padding:36px 0;display:flex;align-item
 <footer>
   <div class="foot-brand">Figuras 3D · Jaime Rivas Reinoso · Granada</div>
   <div class="foot-links">
-    <a href="mailto:jaimerivasgranada@gmail.com" class="foot-link">jaimerivasgranada@gmail.com</a>
+    <a href="/cdn-cgi/l/email-protection#a2c8c3cbcfc7d0cbd4c3d1c5d0c3ccc3c6c3e2c5cfc3cbce8cc1cdcf" class="foot-link"><span class="__cf_email__" data-cfemail="214b40484c4453485740524653404f40454061464c40484d0f424e4c">[email&#160;protected]</span></a>
     <a href="tel:+34618648370" class="foot-link">618 648 370</a>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 'use strict';
 
 /* ── FIGURAS ── */
@@ -810,8 +837,14 @@ function clearCart(){CART=[];renderCart();}
 function toggleCart(){document.getElementById('cartPanel').classList.toggle('open');}
 function openCart(){document.getElementById('cartPanel').classList.add('open');}
 
+function genOrderId(){
+  var seq=(parseInt(localStorage.getItem('fig3d_seq')||'0'))+1;
+  localStorage.setItem('fig3d_seq',seq);
+  return 'FIG'+String(seq).padStart(5,'0');
+}
 function buildCartMsg(nombre,tel){
-  let lines=[`⚡ PEDIDO FIGURAS 3D\nCliente: ${nombre}${tel?' · '+tel:''}\n`];
+  var nPedido=genOrderId();
+  let lines=['⚡ PEDIDO FIGURAS 3D\nNº Pedido: '+nPedido+'\nCliente: '+nombre+(tel?' · '+tel:'')+'\n'];
   CART.forEach((item,i)=>{
     lines.push(`── Figura ${i+1} ──`);
     lines.push(`Personaje: ${item.name}`);
@@ -908,10 +941,15 @@ document.addEventListener('DOMContentLoaded',()=>{
     const btn=this.querySelector('.btn-submit');
     btn.textContent='Enviando...';btn.disabled=true;
     try{
-      await fetch(this.action,{method:'POST',body:new FormData(this),headers:{Accept:'application/json'}});
-      btn.textContent='✓ Enviado';
-    }catch{btn.textContent='Error — escríbeme por WA';}
+      const res=await fetch(this.action,{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});
+      if(res.ok){
+        document.getElementById('formOk').style.display='block';
+        this.reset();btn.textContent='Enviar pedido ✦';btn.disabled=false;
+      } else {btn.textContent='Error, inténtalo de nuevo';btn.disabled=false;}
+    } catch(e){btn.textContent='Error de red';btn.disabled=false;}
   });
+  setupReveal();
+  buildCatalog();
 });
 </script>
 </body>
