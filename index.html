@@ -576,6 +576,107 @@ nav{
 .popup-cancel{width:100%;margin-top:10px;background:none;border:none;cursor:pointer;font-size:12px;color:var(--muted);font-family:'Inter',sans-serif;text-decoration:underline;}
 .popup-cancel:hover{color:var(--text);}
 
+/* ── CUESTIONARIO GUIADO ── */
+.quiz-wrap{width:100%;}
+.quiz-progress{display:flex;align-items:center;gap:8px;margin-bottom:28px;}
+.quiz-step-dot{
+  width:28px;height:28px;border-radius:50%;border:2px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;color:var(--muted);
+  transition:all .3s;flex-shrink:0;cursor:default;
+}
+.quiz-step-dot.active{border-color:var(--accent);color:var(--accent);box-shadow:0 0 12px rgba(79,143,255,.35);}
+.quiz-step-dot.done{background:var(--accent);border-color:var(--accent);color:#fff;}
+.quiz-step-line{flex:1;height:2px;background:var(--border);border-radius:1px;transition:background .4s;}
+.quiz-step-line.done{background:var(--accent);}
+.quiz-panel{display:none;animation:qFade .35s cubic-bezier(.22,1,.36,1);}
+.quiz-panel.active{display:block;}
+@keyframes qFade{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.quiz-q-label{
+  font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:8px;
+}
+.quiz-q-title{
+  font-family:'Orbitron',sans-serif;font-size:clamp(15px,2vw,19px);font-weight:700;
+  color:var(--text);margin-bottom:18px;line-height:1.35;
+}
+.quiz-opts{display:flex;flex-direction:column;gap:10px;}
+.quiz-opt{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 16px;border-radius:14px;
+  border:1.5px solid var(--border2);background:rgba(255,255,255,.025);
+  cursor:pointer;transition:all .2s;text-align:left;color:var(--text);
+  font-size:14px;font-weight:500;font-family:'Inter',sans-serif;
+}
+.quiz-opt:hover{border-color:rgba(79,143,255,.5);background:rgba(79,143,255,.07);}
+.quiz-opt.selected{border-color:var(--accent);background:rgba(79,143,255,.12);color:var(--text);}
+.quiz-opt-icon{font-size:20px;flex-shrink:0;width:28px;text-align:center;}
+.quiz-opt-text{display:flex;flex-direction:column;gap:2px;}
+.quiz-opt-sub{font-size:11px;color:var(--muted);font-weight:400;}
+/* Input fields dentro del quiz */
+.quiz-input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.quiz-input-row.full{grid-template-columns:1fr;}
+.quiz-fg{display:flex;flex-direction:column;gap:5px;}
+.quiz-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+.quiz-inp{
+  padding:11px 14px;border-radius:10px;border:1.5px solid var(--border2);
+  background:rgba(255,255,255,.04);color:var(--text);
+  font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color .2s;
+}
+.quiz-inp:focus{border-color:rgba(79,143,255,.5);}
+.quiz-inp::placeholder{color:var(--muted);}
+textarea.quiz-inp{resize:vertical;min-height:90px;}
+/* Navegación */
+.quiz-nav{display:flex;gap:10px;margin-top:20px;align-items:center;}
+.quiz-btn-next{
+  flex:1;padding:13px;border-radius:12px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;
+  transition:all .22s;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.quiz-btn-next:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(79,143,255,.35);}
+.quiz-btn-back{
+  padding:13px 16px;border-radius:12px;border:1.5px solid var(--border2);
+  background:transparent;color:var(--muted);cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:13px;transition:all .2s;
+}
+.quiz-btn-back:hover{border-color:var(--border2);color:var(--text);background:rgba(255,255,255,.05);}
+/* Resumen final */
+.quiz-summary{
+  background:rgba(79,143,255,.06);border:1.5px solid rgba(79,143,255,.2);
+  border-radius:16px;padding:20px;margin-bottom:20px;
+}
+.quiz-sum-row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);}
+.quiz-sum-row:last-child{border-bottom:none;}
+.quiz-sum-key{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;flex-shrink:0;}
+.quiz-sum-val{font-size:13px;font-weight:600;color:var(--text);text-align:right;}
+.quiz-final-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.quiz-btn-wa{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px;border-radius:12px;background:#25d366;color:#fff;border:none;cursor:pointer;
+  font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;
+  transition:all .22s;
+}
+.quiz-btn-wa:hover{background:#1cb957;}
+.quiz-btn-email{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;border:none;cursor:pointer;
+  font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;
+  transition:all .22s;
+}
+.quiz-sent-ok{
+  text-align:center;padding:40px 20px;display:none;
+}
+.quiz-sent-icon{font-size:48px;margin-bottom:16px;}
+.quiz-sent-title{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:700;color:var(--accent);margin-bottom:8px;}
+.quiz-sent-p{font-size:14px;color:var(--muted);}
+@media(max-width:600px){
+  .quiz-input-row{grid-template-columns:1fr;}
+  .quiz-final-btns{grid-template-columns:1fr;}
+}
+
 /* FOOTER */
 footer{border-top:1px solid var(--border);padding:36px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
 .foot-brand{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;color:var(--muted);}
@@ -844,35 +945,170 @@ footer{border-top:1px solid var(--border);padding:36px 0;display:flex;align-item
       </a>
     </div>
     <div class="contact-card wr">
-      <h3 class="contact-h3" style="margin-bottom:8px;">Formulario</h3>
-      <p class="contact-p" style="margin-bottom:18px;">Te respondo en menos de 24h.</p>
-      <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">Nombre *</label><input class="form-input" type="text" name="nombre" placeholder="Tu nombre" required></div>
-          <div class="form-group"><label class="form-label">Teléfono</label><input class="form-input" type="tel" name="telefono" placeholder="6XX XXX XXX"></div>
+      <h3 class="contact-h3" style="margin-bottom:4px;">Cuéntame qué necesitas</h3>
+      <p class="contact-p" style="margin-bottom:22px;">Rellena el cuestionario y te respondo en menos de 24h.</p>
+
+      <!-- CUESTIONARIO -->
+      <div class="quiz-wrap" id="quizWrap">
+
+        <!-- BARRA DE PROGRESO -->
+        <div class="quiz-progress">
+          <div class="quiz-step-dot active" id="qdot-1">1</div>
+          <div class="quiz-step-line" id="qline-1"></div>
+          <div class="quiz-step-dot" id="qdot-2">2</div>
+          <div class="quiz-step-line" id="qline-2"></div>
+          <div class="quiz-step-dot" id="qdot-3">3</div>
+          <div class="quiz-step-line" id="qline-3"></div>
+          <div class="quiz-step-dot" id="qdot-4">4</div>
+          <div class="quiz-step-line" id="qline-4"></div>
+          <div class="quiz-step-dot" id="qdot-5">✓</div>
         </div>
-        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" name="email" placeholder="tucorreo@email.com" required></div>
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">Figura</label>
-            <select class="form-select" name="figura">
-              <option value="">Selecciona...</option>
-              <option>Luke Skywalker</option><option>Darth Vader</option>
-              <option>Stormtrooper</option><option>Leia Organa</option>
-              <option>Iron Man</option><option>Batman</option>
-              <option>Superman</option><option>Varias figuras</option>
-            </select>
+
+        <!-- PASO 1 — Universo -->
+        <div class="quiz-panel active" id="qp-1">
+          <div class="quiz-q-label">Paso 1 de 4 · Universo</div>
+          <div class="quiz-q-title">¿De qué universo es tu figura?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="quizOpt(this,'universo','Star Wars','⭐')">
+              <span class="quiz-opt-icon">⭐</span>
+              <span class="quiz-opt-text"><span>Star Wars</span><span class="quiz-opt-sub">Yoda, Vader, Luke, Mandalorian...</span></span>
+            </button>
+            <button class="quiz-opt" onclick="quizOpt(this,'universo','Marvel','🔴')">
+              <span class="quiz-opt-icon">🔴</span>
+              <span class="quiz-opt-text"><span>Marvel</span><span class="quiz-opt-sub">Iron Man, Spider-Man, Thor...</span></span>
+            </button>
+            <button class="quiz-opt" onclick="quizOpt(this,'universo','DC','🔵')">
+              <span class="quiz-opt-icon">🔵</span>
+              <span class="quiz-opt-text"><span>DC</span><span class="quiz-opt-sub">Batman, Superman, Wonder Woman...</span></span>
+            </button>
+            <button class="quiz-opt" onclick="quizOpt(this,'universo','Anime / Manga','🌸')">
+              <span class="quiz-opt-icon">🌸</span>
+              <span class="quiz-opt-text"><span>Anime / Manga</span><span class="quiz-opt-sub">Naruto, Dragon Ball, One Piece...</span></span>
+            </button>
+            <button class="quiz-opt" onclick="quizOpt(this,'universo','Videojuegos','🎮')">
+              <span class="quiz-opt-icon">🎮</span>
+              <span class="quiz-opt-text"><span>Videojuegos</span><span class="quiz-opt-sub">Kratos, Link, Zelda, Minecraft...</span></span>
+            </button>
+            <button class="quiz-opt" onclick="quizOpt(this,'universo','Otro / Personalizado','✦')">
+              <span class="quiz-opt-icon">✦</span>
+              <span class="quiz-opt-text"><span>Otro / Personalizado</span><span class="quiz-opt-sub">Cualquier personaje que imagines</span></span>
+            </button>
           </div>
-          <div class="form-group"><label class="form-label">Tamaño</label>
-            <select class="form-select" name="tamaño">
-              <option value="">Selecciona...</option>
-              <option>10cm · 5€</option><option>15cm · 15€</option><option>20cm · 20€</option>
-            </select>
+          <div class="quiz-nav">
+            <button class="quiz-btn-next" onclick="quizNext(1)">Siguiente <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
           </div>
         </div>
-        <div class="form-group"><label class="form-label">Mensaje</label><textarea class="form-textarea" name="mensaje" placeholder="Cantidad, alguna duda..."></textarea></div>
-        <input type="hidden" name="_subject" value="Nuevo pedido · Figuras 3D Granada">
-        <button type="submit" class="btn-submit">Enviar pedido ✦</button>
-      </form>
+
+        <!-- PASO 2 — Tamaño y cantidad -->
+        <div class="quiz-panel" id="qp-2">
+          <div class="quiz-q-label">Paso 2 de 4 · Tamaño</div>
+          <div class="quiz-q-title">¿Qué tamaño y cuántas figuras?</div>
+          <div class="quiz-opts">
+            <button class="quiz-opt" onclick="quizOpt(this,'tamano','10 cm · 5 €','📦')">
+              <span class="quiz-opt-icon">📦</span>
+              <span class="quiz-opt-text"><span>10 cm · 5 €</span><span class="quiz-opt-sub">Ideal para colección o regalo pequeño</span></span>
+            </button>
+            <button class="quiz-opt" onclick="quizOpt(this,'tamano','15 cm · 15 €','🏆')">
+              <span class="quiz-opt-icon">🏆</span>
+              <span class="quiz-opt-text"><span>15 cm · 15 €</span><span class="quiz-opt-sub">El más popular, detalle premium</span></span>
+            </button>
+            <button class="quiz-opt" onclick="quizOpt(this,'tamano','20 cm · 20 €','👑')">
+              <span class="quiz-opt-icon">👑</span>
+              <span class="quiz-opt-text"><span>20 cm · 20 €</span><span class="quiz-opt-sub">Tamaño exposición, máximo detalle</span></span>
+            </button>
+            <button class="quiz-opt" onclick="quizOpt(this,'tamano','Tamaño especial / consultar','✦')">
+              <span class="quiz-opt-icon">✦</span>
+              <span class="quiz-opt-text"><span>Tamaño especial / consultar</span><span class="quiz-opt-sub">Más de 20 cm o medida exacta</span></span>
+            </button>
+          </div>
+          <div class="quiz-input-row" style="margin-top:16px;">
+            <div class="quiz-fg">
+              <label class="quiz-label">Cantidad aproximada</label>
+              <input class="quiz-inp" id="q-cantidad" type="number" min="1" placeholder="Ej: 2" inputmode="numeric">
+            </div>
+          </div>
+          <div class="quiz-nav">
+            <button class="quiz-btn-back" onclick="quizBack(2)">← Volver</button>
+            <button class="quiz-btn-next" onclick="quizNext(2)">Siguiente <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+
+        <!-- PASO 3 — Figura y detalles -->
+        <div class="quiz-panel" id="qp-3">
+          <div class="quiz-q-label">Paso 3 de 4 · Figura</div>
+          <div class="quiz-q-title">¿Qué personaje y algún detalle?</div>
+          <div class="quiz-input-row full">
+            <div class="quiz-fg">
+              <label class="quiz-label">Nombre del personaje *</label>
+              <input class="quiz-inp" id="q-personaje" type="text" placeholder="Ej: Darth Vader, Iron Man...">
+            </div>
+          </div>
+          <div class="quiz-input-row full">
+            <div class="quiz-fg">
+              <label class="quiz-label">Detalles adicionales</label>
+              <textarea class="quiz-inp" id="q-detalles" placeholder="Postura, colores, acabado, si es un regalo, fecha que lo necesitas..."></textarea>
+            </div>
+          </div>
+          <div class="quiz-nav">
+            <button class="quiz-btn-back" onclick="quizBack(3)">← Volver</button>
+            <button class="quiz-btn-next" onclick="quizNext(3)">Siguiente <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+
+        <!-- PASO 4 — Datos de contacto -->
+        <div class="quiz-panel" id="qp-4">
+          <div class="quiz-q-label">Paso 4 de 4 · Contacto</div>
+          <div class="quiz-q-title">¿Cómo te llamas y cómo te contacto?</div>
+          <div class="quiz-input-row">
+            <div class="quiz-fg">
+              <label class="quiz-label">Nombre *</label>
+              <input class="quiz-inp" id="q-nombre" type="text" placeholder="Tu nombre">
+            </div>
+            <div class="quiz-fg">
+              <label class="quiz-label">Teléfono</label>
+              <input class="quiz-inp" id="q-tel" type="tel" placeholder="6XX XXX XXX" inputmode="tel">
+            </div>
+          </div>
+          <div class="quiz-input-row full">
+            <div class="quiz-fg">
+              <label class="quiz-label">Email</label>
+              <input class="quiz-inp" id="q-email" type="email" placeholder="tucorreo@email.com" inputmode="email">
+            </div>
+          </div>
+          <div class="quiz-nav">
+            <button class="quiz-btn-back" onclick="quizBack(4)">← Volver</button>
+            <button class="quiz-btn-next" onclick="quizNext(4)">Ver resumen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+
+        <!-- PASO 5 — Resumen y envío -->
+        <div class="quiz-panel" id="qp-5">
+          <div class="quiz-q-label">Resumen del pedido</div>
+          <div class="quiz-q-title">¡Todo listo! Revisa y envía.</div>
+          <div class="quiz-summary" id="quizSummary"></div>
+          <div class="quiz-final-btns">
+            <button class="quiz-btn-wa" onclick="quizSend('wa')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              Enviar por WhatsApp
+            </button>
+            <button class="quiz-btn-email" onclick="quizSend('email')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+              Enviar por Email
+            </button>
+          </div>
+          <div style="margin-top:10px;text-align:center;">
+            <button class="quiz-btn-back" onclick="quizBack(5)">← Editar</button>
+          </div>
+        </div>
+
+        <!-- CONFIRMACIÓN -->
+        <div class="quiz-sent-ok" id="quizSentOk">
+          <div class="quiz-sent-icon">⚡</div>
+          <div class="quiz-sent-title">¡Pedido enviado!</div>
+          <p class="quiz-sent-p">Te respondo en menos de 24 horas con disponibilidad y precio.</p>
+        </div>
+
+      </div><!-- /quiz-wrap -->
     </div>
   </div>
 </section>
@@ -1113,6 +1349,108 @@ function sendFromPopup(type){
   closePopup();
 }
 
+/* ── CUESTIONARIO GUIADO ── */
+var QUIZ_DATA = { universo:'', universoIcon:'', tamano:'', cantidad:'', personaje:'', detalles:'', nombre:'', tel:'', email:'' };
+var QUIZ_TOTAL = 4;
+
+function quizOpt(btn, key, val, icon){
+  var panel = btn.closest('.quiz-panel');
+  panel.querySelectorAll('.quiz-opt').forEach(function(b){ b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  QUIZ_DATA[key] = val;
+  if(icon) QUIZ_DATA[key+'Icon'] = icon;
+}
+
+function quizGoTo(step){
+  for(var i=1;i<=5;i++){
+    var panel = document.getElementById('qp-'+i);
+    if(panel) panel.classList.toggle('active', i===step);
+    var dot = document.getElementById('qdot-'+i);
+    if(dot){
+      dot.classList.remove('active','done');
+      if(i < step) dot.classList.add('done');
+      else if(i === step) dot.classList.add('active');
+    }
+    var line = document.getElementById('qline-'+i);
+    if(line) line.classList.toggle('done', i < step);
+  }
+}
+
+function quizNext(step){
+  if(step===1){
+    if(!QUIZ_DATA.universo){ alert('Por favor, elige un universo.'); return; }
+    quizGoTo(2);
+  } else if(step===2){
+    if(!QUIZ_DATA.tamano){ alert('Por favor, elige un tamaño.'); return; }
+    QUIZ_DATA.cantidad = document.getElementById('q-cantidad').value || '1';
+    quizGoTo(3);
+  } else if(step===3){
+    QUIZ_DATA.personaje = document.getElementById('q-personaje').value.trim();
+    if(!QUIZ_DATA.personaje){ document.getElementById('q-personaje').focus(); alert('¿Qué personaje quieres?'); return; }
+    QUIZ_DATA.detalles = document.getElementById('q-detalles').value.trim();
+    quizGoTo(4);
+  } else if(step===4){
+    QUIZ_DATA.nombre = document.getElementById('q-nombre').value.trim();
+    if(!QUIZ_DATA.nombre){ document.getElementById('q-nombre').focus(); alert('Dinos tu nombre.'); return; }
+    QUIZ_DATA.tel = document.getElementById('q-tel').value.trim();
+    QUIZ_DATA.email = document.getElementById('q-email').value.trim();
+    if(!QUIZ_DATA.tel && !QUIZ_DATA.email){ alert('Pon al menos un teléfono o email para contactarte.'); return; }
+    quizBuildSummary();
+    quizGoTo(5);
+  }
+}
+
+function quizBack(step){
+  quizGoTo(step-1);
+}
+
+function quizBuildSummary(){
+  var rows = [
+    ['Universo', QUIZ_DATA.universoIcon+' '+QUIZ_DATA.universo],
+    ['Personaje', QUIZ_DATA.personaje],
+    ['Tamaño', QUIZ_DATA.tamano],
+    ['Cantidad', QUIZ_DATA.cantidad+' figura'+(QUIZ_DATA.cantidad!=='1'?'s':'')],
+    ['Detalles', QUIZ_DATA.detalles || '—'],
+    ['Nombre', QUIZ_DATA.nombre],
+    ['Contacto', QUIZ_DATA.tel || QUIZ_DATA.email],
+  ];
+  document.getElementById('quizSummary').innerHTML = rows.map(function(r){
+    return '<div class="quiz-sum-row"><span class="quiz-sum-key">'+r[0]+'</span><span class="quiz-sum-val">'+r[1]+'</span></div>';
+  }).join('');
+}
+
+function quizBuildMsg(){
+  var lines = [
+    '⚡ PEDIDO FIGURAS 3D',
+    'Cliente: '+QUIZ_DATA.nombre,
+    QUIZ_DATA.tel ? 'Teléfono: '+QUIZ_DATA.tel : '',
+    QUIZ_DATA.email ? 'Email: '+QUIZ_DATA.email : '',
+    '',
+    '── Figura ──',
+    'Universo: '+QUIZ_DATA.universo,
+    'Personaje: '+QUIZ_DATA.personaje,
+    'Tamaño: '+QUIZ_DATA.tamano,
+    'Cantidad: '+QUIZ_DATA.cantidad,
+    QUIZ_DATA.detalles ? 'Detalles: '+QUIZ_DATA.detalles : '',
+    '',
+    '¿Puedes confirmarme disponibilidad y plazo? Gracias.'
+  ];
+  return lines.filter(function(l){ return l!==null&&l!==undefined; }).join('\n');
+}
+
+function quizSend(type){
+  var msg = quizBuildMsg();
+  if(type==='wa'){
+    window.open('https://wa.me/34618648370?text='+encodeURIComponent(msg),'_blank');
+  } else {
+    var subj = encodeURIComponent('Pedido Figuras 3D · '+QUIZ_DATA.personaje+' · '+QUIZ_DATA.nombre);
+    window.location.href = 'mailto:jaimerivasgranada@gmail.com?subject='+subj+'&body='+encodeURIComponent(msg);
+  }
+  document.getElementById('quizWrap').querySelector('.quiz-progress').style.display='none';
+  document.querySelectorAll('.quiz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('quizSentOk').style.display='block';
+}
+
 /* ── REVEAL ── */
 function setupReveal(){
   const obs=new IntersectionObserver(entries=>{
@@ -1137,18 +1475,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   buildCatalog();
   document.getElementById('popupWaBtn').onclick=()=>sendFromPopup('wa');
   document.getElementById('popupEmailBtn').onclick=()=>sendFromPopup('email');
-  document.getElementById('contactForm').addEventListener('submit',async function(e){
-    e.preventDefault();
-    const btn=this.querySelector('.btn-submit');
-    btn.textContent='Enviando...';btn.disabled=true;
-    try{
-      const res=await fetch(this.action,{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});
-      if(res.ok){
-        document.getElementById('formOk').style.display='block';
-        this.reset();btn.textContent='Enviar pedido ✦';btn.disabled=false;
-      } else {btn.textContent='Error, inténtalo de nuevo';btn.disabled=false;}
-    } catch(e){btn.textContent='Error de red';btn.disabled=false;}
-  });
+
   setupReveal();
   buildCatalog();
 });
