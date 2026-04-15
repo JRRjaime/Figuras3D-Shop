@@ -1281,15 +1281,19 @@ function toggleCart(){document.getElementById('cartPanel').classList.toggle('ope
 function openCart(){document.getElementById('cartPanel').classList.add('open');}
 
 function buildCartMsg(nombre,tel){
-  let lines=[`⚡ PEDIDO FIGURAS 3D\nCliente: ${nombre}${tel?' · '+tel:''}\n`];
+  const numPedido = 'FIG-' + Date.now().toString().slice(-6);
+  let lines=[`✅ ¡PEDIDO RECIBIDO!\n\n📦 ID de pedido: #${numPedido}\n👤 Nombre: ${nombre}${tel?'\n📱 Teléfono: '+tel:''}\n`];
   CART.forEach((item,i)=>{
     lines.push(`── Figura ${i+1} ──`);
     lines.push(`Personaje: ${item.name}`);
     lines.push(`Tamaño: ${item.size}`);
     lines.push(`Precio: ${item.price} €\n`);
   });
-  lines.push(`TOTAL: ${CART.reduce((s,i)=>s+i.price,0)} €`);
-  lines.push('\n¿Puedes confirmarme disponibilidad y plazo? Gracias.');
+  lines.push(`💰 TOTAL: ${CART.reduce((s,i)=>s+i.price,0)} €`);
+  lines.push('\n🔔 Consulta el estado de tu pedido en tiempo real:');
+  lines.push('👉 https://t.me/Webjrr_bot');
+  lines.push('\nEscribe /consultarpedido en el bot e introduce tu número de pedido: #'+numPedido);
+  lines.push('\n¡Gracias por confiar en Figuras 3D!');
   return lines.join('\n');
 }
 
@@ -1420,20 +1424,28 @@ function quizBuildSummary(){
 }
 
 function quizBuildMsg(){
+  const numPedido = 'FIG-' + Date.now().toString().slice(-6);
   var lines = [
-    '⚡ PEDIDO FIGURAS 3D',
-    'Cliente: '+QUIZ_DATA.nombre,
-    QUIZ_DATA.tel ? 'Teléfono: '+QUIZ_DATA.tel : '',
-    QUIZ_DATA.email ? 'Email: '+QUIZ_DATA.email : '',
+    '✅ ¡PEDIDO RECIBIDO!',
+    '',
+    '📦 ID de pedido: #'+numPedido,
+    '👤 Cliente: '+QUIZ_DATA.nombre,
+    QUIZ_DATA.tel ? '📱 Teléfono: '+QUIZ_DATA.tel : '',
+    QUIZ_DATA.email ? '📧 Email: '+QUIZ_DATA.email : '',
     '',
     '── Figura ──',
-    'Universo: '+QUIZ_DATA.universo,
-    'Personaje: '+QUIZ_DATA.personaje,
-    'Tamaño: '+QUIZ_DATA.tamano,
-    'Cantidad: '+QUIZ_DATA.cantidad,
-    QUIZ_DATA.detalles ? 'Detalles: '+QUIZ_DATA.detalles : '',
+    '🎬 Universo: '+QUIZ_DATA.universo,
+    '⚡ Personaje: '+QUIZ_DATA.personaje,
+    '📏 Tamaño: '+QUIZ_DATA.tamano,
+    '🔢 Cantidad: '+QUIZ_DATA.cantidad,
+    QUIZ_DATA.detalles ? '📝 Detalles: '+QUIZ_DATA.detalles : '',
     '',
-    '¿Puedes confirmarme disponibilidad y plazo? Gracias.'
+    '🔔 Consulta el estado de tu pedido en tiempo real:',
+    '👉 https://t.me/Webjrr_bot',
+    '',
+    'Escribe /consultarpedido en el bot e introduce tu número de pedido: #'+numPedido,
+    '',
+    '¡Gracias por confiar en Figuras 3D!'
   ];
   return lines.filter(function(l){ return l!==null&&l!==undefined; }).join('\n');
 }
