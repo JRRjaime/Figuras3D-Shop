@@ -175,27 +175,28 @@ nav{
 
 /* ── STOCK BADGES ── */
 .stock-badge{
-  position:absolute;top:12px;right:12px;z-index:10;
-  padding:6px 12px;border-radius:6px;
-  font-size:9px;font-weight:800;letter-spacing:.12em;
+  position:absolute;top:6px;right:6px;z-index:10;
+  padding:3px 8px;border-radius:4px;
+  font-size:7px;font-weight:800;letter-spacing:.08em;
   text-transform:uppercase;
-  box-shadow:0 4px 12px rgba(0,0,0,.4);
-  backdrop-filter:blur(8px);
+  box-shadow:0 2px 6px rgba(0,0,0,.3);
+  backdrop-filter:blur(6px);
+  white-space:nowrap;
 }
 .stock-ok{
-  background:rgba(34,197,94,.25);
-  border:1.5px solid rgba(34,197,94,.6);
+  background:rgba(34,197,94,.3);
+  border:1px solid rgba(34,197,94,.7);
   color:#22c55e;
 }
 .stock-low{
-  background:rgba(245,158,11,.25);
-  border:1.5px solid rgba(245,158,11,.6);
+  background:rgba(245,158,11,.3);
+  border:1px solid rgba(245,158,11,.7);
   color:#f59e0b;
   animation:stockPulse 2s ease-in-out infinite;
 }
 .stock-out{
-  background:rgba(239,68,68,.25);
-  border:1.5px solid rgba(239,68,68,.6);
+  background:rgba(239,68,68,.3);
+  border:1px solid rgba(239,68,68,.7);
   color:#ef4444;
 }
 @keyframes stockPulse{0%,100%{opacity:1;}50%{opacity:.6;}}
@@ -918,8 +919,7 @@ var CATALOG = [
   // FIGURAS MARVEL (con precios por tamaño)
   {id:'ironman',name:'Iron Man',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496816933_image.png',desc:'Tony Stark en su armadura Mark 50. Edición limitada.',badge:'edicion',category:'marvel',type:'figura'},
   {id:'venom',name:'Venom',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'venon.PNG',desc:'El simbionte más temible del universo Marvel.',badge:'nuevo',category:'marvel',type:'figura'},
-  {id:'spiderman-classic',name:'Spider-Man Clásico',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'spiderman-classic.png',desc:'El trepamuros en su icónico traje clásico. Pose dinámica.',badge:'popular',category:'marvel',type:'figura'},
-  {id:'spiderman-advanced',name:'Spider-Man Avanzado',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'spiderman-advanced.png',desc:'Spider-Man con traje avanzado. Máxima calidad de impresión.',badge:'nuevo',category:'marvel',type:'figura'},
+  {id:'spiderman-classic',name:'Spider-Man Clásico',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776685294755_image.png',desc:'El trepamuros en su icónico traje clásico. Pose dinámica.',badge:'popular',category:'marvel',type:'figura'},
   
   // FIGURAS HARRY POTTER (con precios por tamaño)
   {id:'severus',name:'Severus Snape',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'severus.PNG',desc:'El profesor de pociones de Hogwarts. Impresión detallada.',badge:'nuevo',category:'harry-potter',type:'figura'},
@@ -1274,7 +1274,6 @@ var STOCK_DB = {
   'ironman': { disponible: true, cantidad: 3 },
   'venom': { disponible: true, cantidad: 5 },
   'spiderman-classic': { disponible: true, cantidad: 7 },
-  'spiderman-advanced': { disponible: true, cantidad: 4 },
   'severus': { disponible: true, cantidad: 3 },
   'draco': { disponible: true, cantidad: 2 },
   'llavero_superman': { disponible: true, cantidad: 15 },
