@@ -173,6 +173,46 @@ nav{
   color:rgba(255,190,0,.55);position:relative;z-index:2;
 }
 
+/* ── STOCK BADGES ── */
+.stock-badge{
+  position:absolute;top:12px;right:12px;z-index:10;
+  padding:6px 12px;border-radius:6px;
+  font-size:9px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;
+  box-shadow:0 4px 12px rgba(0,0,0,.4);
+  backdrop-filter:blur(8px);
+}
+.stock-ok{
+  background:rgba(34,197,94,.25);
+  border:1.5px solid rgba(34,197,94,.6);
+  color:#22c55e;
+}
+.stock-low{
+  background:rgba(245,158,11,.25);
+  border:1.5px solid rgba(245,158,11,.6);
+  color:#f59e0b;
+  animation:stockPulse 2s ease-in-out infinite;
+}
+.stock-out{
+  background:rgba(239,68,68,.25);
+  border:1.5px solid rgba(239,68,68,.6);
+  color:#ef4444;
+}
+@keyframes stockPulse{0%,100%{opacity:1;}50%{opacity:.6;}}
+
+.out-of-stock{
+  opacity:.5;
+  filter:grayscale(.7);
+}
+.out-of-stock .c-img{
+  opacity:.4;
+}
+.out-of-stock .c-add{
+  background:var(--red) !important;
+  cursor:not-allowed;
+  opacity:.5;
+}
+
 /* ── HERO INTRO ── */
 .hero{
   display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
@@ -865,23 +905,25 @@ nav{
 ────────────────────────── */
 var CATALOG = [
   // FIGURAS STAR WARS (con precios por tamaño)
-  {id:'luke',name:'Luke Skywalker',prices:{'5cm':8.99,'10cm':12.99,'15cm':16.99},img:'1776496567378_image.png',desc:'Jedi de la saga Star Wars. Detalles increíbles.',badge:'popular',category:'star-wars',type:'figura'},
-  {id:'darth',name:'Darth Vader',prices:{'5cm':9.99,'10cm':14.99,'15cm':18.99},img:'1776496603672_image.png',desc:'El villano más icónico de todos los tiempos.',badge:'nuevo',category:'star-wars',type:'figura'},
-  {id:'leia',name:'Princesa Leia',prices:{'5cm':8.99,'10cm':13.99,'15cm':17.99},img:'1776496639585_image.png',desc:'La líder rebelde de Star Wars.',badge:'popular',category:'star-wars',type:'figura'},
-  {id:'trooper',name:'Stormtrooper',prices:{'5cm':7.99,'10cm':11.99,'15cm':15.99},img:'1776496887234_image.png',desc:'Soldado del Imperio Galáctico. Perfecto para coleccionar.',badge:null,category:'star-wars',type:'figura'},
-  {id:'chewbacca',name:'Chewbacca',prices:{'5cm':9.49,'10cm':14.49,'15cm':18.49},img:'chewaka.PNG',desc:'El fiel copiloto del Halcón Milenario.',badge:'nuevo',category:'star-wars',type:'figura'},
+  {id:'luke',name:'Luke Skywalker',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496567378_image.png',desc:'Jedi de la saga Star Wars. Detalles increíbles.',badge:'popular',category:'star-wars',type:'figura'},
+  {id:'darth',name:'Darth Vader',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496603672_image.png',desc:'El villano más icónico de todos los tiempos.',badge:'nuevo',category:'star-wars',type:'figura'},
+  {id:'leia',name:'Princesa Leia',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496639585_image.png',desc:'La líder rebelde de Star Wars.',badge:'popular',category:'star-wars',type:'figura'},
+  {id:'trooper',name:'Stormtrooper',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496887234_image.png',desc:'Soldado del Imperio Galáctico. Perfecto para coleccionar.',badge:null,category:'star-wars',type:'figura'},
+  {id:'chewbacca',name:'Chewbacca',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'chewaka.PNG',desc:'El fiel copiloto del Halcón Milenario.',badge:'nuevo',category:'star-wars',type:'figura'},
   
   // FIGURAS DC COMICS (con precios por tamaño)
-  {id:'superman',name:'Superman',prices:{'5cm':8.49,'10cm':13.49,'15cm':17.49},img:'1776496698551_image.png',desc:'El Hombre de Acero. Calidad premium.',badge:null,category:'dc',type:'figura'},
-  {id:'batman',name:'Batman',prices:{'5cm':9.49,'10cm':14.49,'15cm':18.49},img:'1776496840704_image.png',desc:'El Caballero Oscuro de Gotham City.',badge:null,category:'dc',type:'figura'},
+  {id:'superman',name:'Superman',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496698551_image.png',desc:'El Hombre de Acero. Calidad premium.',badge:null,category:'dc',type:'figura'},
+  {id:'batman',name:'Batman',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496840704_image.png',desc:'El Caballero Oscuro de Gotham City.',badge:null,category:'dc',type:'figura'},
   
   // FIGURAS MARVEL (con precios por tamaño)
-  {id:'ironman',name:'Iron Man',prices:{'5cm':10.99,'10cm':15.99,'15cm':19.99},img:'1776496816933_image.png',desc:'Tony Stark en su armadura Mark 50. Edición limitada.',badge:'edicion',category:'marvel',type:'figura'},
-  {id:'venom',name:'Venom',prices:{'5cm':10.49,'10cm':15.49,'15cm':19.49},img:'venon.PNG',desc:'El simbionte más temible del universo Marvel.',badge:'nuevo',category:'marvel',type:'figura'},
+  {id:'ironman',name:'Iron Man',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496816933_image.png',desc:'Tony Stark en su armadura Mark 50. Edición limitada.',badge:'edicion',category:'marvel',type:'figura'},
+  {id:'venom',name:'Venom',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'venon.PNG',desc:'El simbionte más temible del universo Marvel.',badge:'nuevo',category:'marvel',type:'figura'},
+  {id:'spiderman-classic',name:'Spider-Man Clásico',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'spiderman-classic.png',desc:'El trepamuros en su icónico traje clásico. Pose dinámica.',badge:'popular',category:'marvel',type:'figura'},
+  {id:'spiderman-advanced',name:'Spider-Man Avanzado',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'spiderman-advanced.png',desc:'Spider-Man con traje avanzado. Máxima calidad de impresión.',badge:'nuevo',category:'marvel',type:'figura'},
   
   // FIGURAS HARRY POTTER (con precios por tamaño)
-  {id:'severus',name:'Severus Snape',prices:{'5cm':8.99,'10cm':13.99,'15cm':17.99},img:'severus.PNG',desc:'El profesor de pociones de Hogwarts. Impresión detallada.',badge:'nuevo',category:'harry-potter',type:'figura'},
-  {id:'draco',name:'Draco Malfoy',prices:{'5cm':7.99,'10cm':12.99,'15cm':16.99},img:'draco.PNG',desc:'El rival de Harry Potter en Slytherin.',badge:'nuevo',category:'harry-potter',type:'figura'},
+  {id:'severus',name:'Severus Snape',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'severus.PNG',desc:'El profesor de pociones de Hogwarts. Impresión detallada.',badge:'nuevo',category:'harry-potter',type:'figura'},
+  {id:'draco',name:'Draco Malfoy',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'draco.PNG',desc:'El rival de Harry Potter en Slytherin.',badge:'nuevo',category:'harry-potter',type:'figura'},
   
   // LLAVEROS DC COMICS (8 unidades a 0,70€)
   {id:'llavero_superman',name:'Llavero Superman',price:0.70,img:'llavero_superman.PNG',desc:'Llavero del logo de Superman.',badge:null,category:'llaveros',type:'llavero'},
@@ -924,16 +966,16 @@ function buildCatalog(){
     }
     
     return `
-      <div class="cat-item">
-        <div class="cat-img-wrap">
+      <div class="cat-item c" data-id="${item.id}">
+        <div class="cat-img-wrap c-img-w">
           ${badgeHtml}
-          <img src="${item.img}" alt="${item.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%2314141f%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238888aa%22 font-size=%2216%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EImagen no disponible%3C/text%3E%3C/svg%3E'">
+          <img src="${item.img}" class="c-img" alt="${item.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%2314141f%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238888aa%22 font-size=%2216%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EImagen no disponible%3C/text%3E%3C/svg%3E'">
         </div>
         <div class="cat-body">
           <div class="cat-name">${item.name}</div>
           <div class="cat-desc">${item.desc}</div>
           ${priceHtml}
-          <button class="cat-btn" onclick="addToCart('${item.id}',event)" style="width:100%;margin-top:8px;">
+          <button class="cat-btn c-add" onclick="addToCart('${item.id}',event)" style="width:100%;margin-top:8px;">
             Añadir al carrito
           </button>
         </div>
@@ -948,6 +990,12 @@ function buildCatalog(){
 function addToCart(itemId, event){
   var item = CATALOG.find(x=>x.id===itemId);
   if(!item) return;
+  
+  // Verificar stock
+  if(!isAvailable(itemId)){
+    alert('⚠️ Este producto está agotado actualmente.');
+    return;
+  }
   
   var size = '10cm'; // por defecto
   var price = item.price || item.prices['10cm'];
@@ -1214,9 +1262,156 @@ document.addEventListener('click',e=>{
   if(overlay.classList.contains('open')&&e.target===overlay) closePopup();
 });
 
+/* ── GESTIÓN DE STOCK ── */
+var STOCK_DB = {
+  'luke': { disponible: true, cantidad: 5 },
+  'darth': { disponible: true, cantidad: 3 },
+  'leia': { disponible: true, cantidad: 4 },
+  'trooper': { disponible: true, cantidad: 8 },
+  'chewbacca': { disponible: true, cantidad: 2 },
+  'superman': { disponible: true, cantidad: 6 },
+  'batman': { disponible: true, cantidad: 4 },
+  'ironman': { disponible: true, cantidad: 3 },
+  'venom': { disponible: true, cantidad: 5 },
+  'spiderman-classic': { disponible: true, cantidad: 7 },
+  'spiderman-advanced': { disponible: true, cantidad: 4 },
+  'severus': { disponible: true, cantidad: 3 },
+  'draco': { disponible: true, cantidad: 2 },
+  'llavero_superman': { disponible: true, cantidad: 15 },
+  'llavero_flash': { disponible: true, cantidad: 12 },
+  'llavero_linterna': { disponible: true, cantidad: 10 },
+  'llavero_batman': { disponible: true, cantidad: 20 },
+  'llavero_dc': { disponible: true, cantidad: 18 },
+  'llavero_jl': { disponible: true, cantidad: 8 },
+  'llavero_ww': { disponible: true, cantidad: 14 },
+  'llavero_aquaman': { disponible: true, cantidad: 11 }
+};
+
+// Cargar stock desde localStorage
+function loadStock() {
+  const saved = localStorage.getItem('figuras3d_stock');
+  if (saved) {
+    try {
+      STOCK_DB = JSON.parse(saved);
+    } catch(e) {
+      console.error('Error cargando stock:', e);
+    }
+  }
+}
+
+// Guardar stock en localStorage
+function saveStock() {
+  localStorage.setItem('figuras3d_stock', JSON.stringify(STOCK_DB));
+}
+
+// Verificar si un producto está disponible
+function isAvailable(id) {
+  return STOCK_DB[id] && STOCK_DB[id].disponible && STOCK_DB[id].cantidad > 0;
+}
+
+// Actualizar badge de stock en producto
+function updateStockBadge(id) {
+  const card = document.querySelector(`.c[data-id="${id}"]`);
+  if (!card) return;
+  
+  let badge = card.querySelector('.stock-badge');
+  if (!badge) {
+    badge = document.createElement('div');
+    badge.className = 'stock-badge';
+    card.querySelector('.c-img-w').appendChild(badge);
+  }
+  
+  const stock = STOCK_DB[id];
+  if (!stock || !stock.disponible || stock.cantidad === 0) {
+    badge.textContent = 'AGOTADO';
+    badge.className = 'stock-badge stock-out';
+    card.classList.add('out-of-stock');
+  } else if (stock.cantidad <= 2) {
+    badge.textContent = `¡ÚLTIMAS ${stock.cantidad}!`;
+    badge.className = 'stock-badge stock-low';
+    card.classList.remove('out-of-stock');
+  } else {
+    badge.textContent = 'DISPONIBLE';
+    badge.className = 'stock-badge stock-ok';
+    card.classList.remove('out-of-stock');
+  }
+}
+
+// Panel de administración
+function openAdminPanel() {
+  const pwd = prompt('Contraseña de administrador:');
+  if (pwd !== 'figuras2026') {
+    alert('Contraseña incorrecta');
+    return;
+  }
+  
+  let html = '<div style="max-height:70vh;overflow-y:auto;"><table style="width:100%;border-collapse:collapse;">';
+  html += '<tr style="background:#1a1a2e;"><th style="padding:12px;text-align:left;border-bottom:2px solid var(--accent);">Producto</th><th style="padding:12px;text-align:center;border-bottom:2px solid var(--accent);">Stock</th><th style="padding:12px;text-align:center;border-bottom:2px solid var(--accent);">Estado</th><th style="padding:12px;text-align:center;border-bottom:2px solid var(--accent);">Acciones</th></tr>';
+  
+  Object.keys(STOCK_DB).forEach(id => {
+    const item = STOCK_DB[id];
+    const statusColor = item.disponible ? (item.cantidad > 2 ? '#22c55e' : '#f59e0b') : '#ef4444';
+    html += `<tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:12px;">${id}</td>
+      <td style="padding:12px;text-align:center;"><input type="number" id="qty-${id}" value="${item.cantidad}" min="0" style="width:60px;padding:6px;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:6px;text-align:center;"></td>
+      <td style="padding:12px;text-align:center;"><span style="color:${statusColor};font-weight:600;">${item.disponible && item.cantidad > 0 ? 'DISPONIBLE' : 'AGOTADO'}</span></td>
+      <td style="padding:12px;text-align:center;">
+        <button onclick="toggleStock('${id}')" style="padding:6px 12px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer;margin:0 4px;">${item.disponible ? 'Marcar agotado' : 'Marcar disponible'}</button>
+        <button onclick="updateQuantity('${id}')" style="padding:6px 12px;background:var(--green);color:#fff;border:none;border-radius:6px;cursor:pointer;margin:0 4px;">Actualizar</button>
+      </td>
+    </tr>`;
+  });
+  
+  html += '</table></div>';
+  html += '<div style="margin-top:20px;text-align:center;"><button onclick="closeAdminPanel()" style="padding:10px 24px;background:var(--red);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">Cerrar</button></div>';
+  
+  const overlay = document.createElement('div');
+  overlay.id = 'adminOverlay';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
+  
+  const panel = document.createElement('div');
+  panel.style.cssText = 'background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px;max-width:900px;width:100%;';
+  panel.innerHTML = '<h2 style="margin:0 0 20px;font-family:Orbitron,sans-serif;color:var(--accent);">📦 ADMINISTRACIÓN DE STOCK</h2>' + html;
+  
+  overlay.appendChild(panel);
+  document.body.appendChild(overlay);
+}
+
+function closeAdminPanel() {
+  const overlay = document.getElementById('adminOverlay');
+  if (overlay) overlay.remove();
+}
+
+function toggleStock(id) {
+  STOCK_DB[id].disponible = !STOCK_DB[id].disponible;
+  if (!STOCK_DB[id].disponible) {
+    STOCK_DB[id].cantidad = 0;
+  }
+  saveStock();
+  updateStockBadge(id);
+  closeAdminPanel();
+  openAdminPanel();
+}
+
+function updateQuantity(id) {
+  const input = document.getElementById('qty-' + id);
+  const newQty = parseInt(input.value) || 0;
+  STOCK_DB[id].cantidad = newQty;
+  STOCK_DB[id].disponible = newQty > 0;
+  saveStock();
+  updateStockBadge(id);
+  alert(`Stock actualizado: ${id} → ${newQty} unidades`);
+  closeAdminPanel();
+  openAdminPanel();
+}
+
 /* ── INIT ── */
 document.addEventListener('DOMContentLoaded',()=>{
+  loadStock();
   buildCatalog();
+  
+  // Actualizar badges de stock
+  Object.keys(STOCK_DB).forEach(id => updateStockBadge(id));
   
   const waBtn = document.getElementById('popupWaBtn');
   const emailBtn = document.getElementById('popupEmailBtn');
@@ -1225,6 +1420,14 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(emailBtn) emailBtn.onclick = ()=>sendFromPopup('email');
 
   setupReveal();
+  
+  // Detectar combinación de teclas Ctrl+Shift+A para admin
+  document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+      e.preventDefault();
+      openAdminPanel();
+    }
+  });
 });
 
 /* ── Hero figure rotator ── */
