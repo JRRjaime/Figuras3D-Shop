@@ -699,7 +699,7 @@ nav{
     <div class="hero-glow" id="heroGlow"></div>
     <div class="hero-card" id="heroCard">
       <div class="hero-fig-carousel" id="heroCarousel">
-        <!-- 11 slides -->
+        <!-- 13 slides -->
         <div class="hf-slide hf-active"><img src="1776496567378_image.png" alt="Luke Skywalker"></div>
         <div class="hf-slide"><img src="1776496603672_image.png" alt="Darth Vader"></div>
         <div class="hf-slide"><img src="1776496887234_image.png" alt="Stormtrooper"></div>
@@ -711,6 +711,8 @@ nav{
         <div class="hf-slide"><img src="venon.PNG" alt="Venom"></div>
         <div class="hf-slide"><img src="draco.PNG" alt="Draco Malfoy"></div>
         <div class="hf-slide"><img src="chewaka.PNG" alt="Chewbacca"></div>
+        <div class="hf-slide"><img src="spiderman-black.png" alt="Spider-Man Black"></div>
+        <div class="hf-slide"><img src="deadpool.png" alt="Deadpool"></div>
       </div>
     </div>
     <div class="hf-dots">
@@ -725,6 +727,8 @@ nav{
       <div class="hf-dot" data-i="8"></div>
       <div class="hf-dot" data-i="9"></div>
       <div class="hf-dot" data-i="10"></div>
+      <div class="hf-dot" data-i="11"></div>
+      <div class="hf-dot" data-i="12"></div>
     </div>
   </div>
 </section>
@@ -919,6 +923,8 @@ var CATALOG = [
   // FIGURAS MARVEL (con precios por tamaño)
   {id:'ironman',name:'Iron Man',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496816933_image.png',desc:'Tony Stark en su armadura Mark 50. Edición limitada.',badge:'edicion',category:'marvel',type:'figura'},
   {id:'venom',name:'Venom',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'venon.PNG',desc:'El simbionte más temible del universo Marvel.',badge:'nuevo',category:'marvel',type:'figura'},
+  {id:'spiderman-black',name:'Spider-Man Black',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'spiderman-black.png',desc:'Spider-Man con el traje simbionte negro.',badge:'nuevo',category:'marvel',type:'figura'},
+  {id:'deadpool',name:'Deadpool',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'deadpool.png',desc:'El mercenario bocazas de Marvel.',badge:'nuevo',category:'marvel',type:'figura'},
   {id:'spiderman-classic',name:'Spider-Man Clásico',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776685294755_image.png',desc:'El trepamuros en su icónico traje clásico. Pose dinámica.',badge:'popular',category:'marvel',type:'figura'},
   
   // FIGURAS HARRY POTTER (con precios por tamaño)
@@ -1442,7 +1448,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     { bg: 'linear-gradient(145deg,#0a0a0f,#14141e)', glow: 'rgba(100,80,180,.3)' },
     { bg: 'linear-gradient(145deg,#050505,#0f0f0f)', glow: 'rgba(220,50,50,.35)' },
     { bg: 'linear-gradient(145deg,#0f0f1a,#1a1a2e)', glow: 'rgba(150,150,150,.25)' },
-    { bg: 'linear-gradient(145deg,#1a0a05,#281410)', glow: 'rgba(210,120,50,.3)' }
+    { bg: 'linear-gradient(145deg,#1a0a05,#281410)', glow: 'rgba(210,120,50,.3)' },
+    { bg: 'linear-gradient(145deg,#000000,#0a0a0a)', glow: 'rgba(200,200,220,.25)' },
+    { bg: 'linear-gradient(145deg,#1a0000,#2a0505)', glow: 'rgba(255,50,50,.35)' }
   ];
   var current = 0;
   var card  = document.getElementById('heroCard');
