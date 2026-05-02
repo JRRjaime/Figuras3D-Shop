@@ -7,896 +7,927 @@
 <title>Figuras 3D · Colección · Jaime Rivas · Granada</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:wght@400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 :root{
-  --bg:#09090f;
-  --bg2:#0f0f1a;
-  --bg3:#14141f;
-  --card:#16161f;
-  --border:rgba(255,255,255,.07);
-  --border2:rgba(255,255,255,.12);
-  --text:#f0f0ff;
-  --muted:#8888aa;
-  --accent:#4f8fff;
-  --accent2:#a855f7;
-  --gold:#f59e0b;
-  --red:#ef4444;
-  --green:#22c55e;
-  --r:16px;
-  --rL:24px;
+  --bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;
+  --card:#141414;--card2:#1c1c1c;
+  --yellow:#FFD600;--red:#FF1744;--cyan:#00E5FF;
+  --green:#00E676;--purple:#D500F9;--orange:#FF9100;
+  --text:#f5f5f5;--muted:#888;
+  --border:rgba(255,255,255,.08);
+  --r:8px;--rL:16px;
 }
-body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);min-height:100vh;overflow-x:hidden;}
+body{font-family:'Barlow Condensed',sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden}
 
-/* FONDO ANIMADO */
+/* ═══ HALFTONE BACKGROUND ═══ */
 body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.03;
+  background-image:radial-gradient(circle, #fff 1px, transparent 1px);
+  background-size:8px 8px;
+}
+body::after{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse at 15% 20%,rgba(79,143,255,.08) 0%,transparent 50%),
-    radial-gradient(ellipse at 85% 75%,rgba(168,85,247,.07) 0%,transparent 50%),
-    radial-gradient(ellipse at 50% 50%,rgba(245,158,11,.04) 0%,transparent 60%);
+    radial-gradient(ellipse at 0% 0%, rgba(255,23,68,.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 100%, rgba(0,229,255,.08) 0%, transparent 50%);
 }
 
-.page{position:relative;z-index:1;width:min(1240px,calc(100vw - 32px));margin:0 auto;padding-bottom:100px;}
+/* ═══ SCANLINES ═══ */
+.scanlines{
+  position:fixed;inset:0;z-index:9999;pointer-events:none;
+  background:repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.05) 2px, rgba(0,0,0,.05) 4px);
+}
 
-/* NAV */
+/* ═══ NAV ═══ */
 nav{
   position:sticky;top:0;z-index:200;
-  padding:0 24px;height:64px;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-  background:rgba(9,9,15,.85);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(16px,3vw,40px);height:70px;
+  background:rgba(10,10,10,.92);backdrop-filter:blur(20px);
+  border-bottom:3px solid var(--yellow);
 }
 .nav-logo{
-  display:flex;align-items:center;gap:10px;text-decoration:none;
-  font-family:'Orbitron',sans-serif;font-size:16px;font-weight:700;color:var(--text);
-  letter-spacing:.05em;
+  display:flex;align-items:center;gap:12px;text-decoration:none;
+  font-family:'Bangers',cursive;font-size:28px;color:var(--yellow);
+  letter-spacing:.06em;text-shadow:2px 2px 0 var(--red),-1px -1px 0 var(--cyan);
+  transition:transform .2s;
 }
-.nav-logo-icon{
-  width:32px;height:32px;border-radius:8px;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  display:flex;align-items:center;justify-content:center;font-size:16px;
-  box-shadow:0 0 16px rgba(79,143,255,.4);
+.nav-logo:hover{transform:scale(1.05) rotate(-1deg)}
+.nav-logo-box{
+  width:42px;height:42px;border:3px solid var(--yellow);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;transform:rotate(-5deg);
+  background:var(--red);box-shadow:3px 3px 0 var(--yellow);
 }
-.nav-links{display:flex;align-items:center;gap:6px;}
+.nav-links{display:flex;gap:4px}
 .nav-a{
-  font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;
-  padding:7px 14px;border-radius:999px;border:1px solid transparent;
-  transition:all .2s;
+  font-family:'Bangers',cursive;font-size:16px;letter-spacing:.04em;
+  color:var(--muted);text-decoration:none;padding:8px 16px;
+  border:2px solid transparent;transition:all .2s;position:relative;
 }
-.nav-a:hover{color:var(--text);background:rgba(255,255,255,.06);}
+.nav-a:hover{color:var(--yellow);border-color:var(--yellow);transform:translateY(-2px)}
 .nav-a.pri{
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  color:#fff;border:none;font-weight:600;
-  box-shadow:0 4px 16px rgba(79,143,255,.3);
+  background:var(--yellow);color:#000;border-color:var(--yellow);
+  box-shadow:3px 3px 0 var(--red);font-weight:700;
 }
-.nav-a.pri:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(79,143,255,.4);}
+.nav-a.pri:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--red)}
 
-/* HERO */
-
-/* ── TICKER TOP ── */
-.top-ticker{
-  width:100%;overflow:hidden;white-space:nowrap;
-  background:rgba(79,143,255,.07);
-  border-bottom:1px solid rgba(79,143,255,.18);
-  padding:7px 0;
-  mask-image:linear-gradient(to right,transparent,black 6%,black 94%,transparent);
-  -webkit-mask-image:linear-gradient(to right,transparent,black 6%,black 94%,transparent);
+/* NAV NAZARENOS */
+.nav-naz{
+  font-family:'Bangers',cursive;font-size:15px;letter-spacing:.04em;
+  padding:8px 16px;text-decoration:none;cursor:pointer;
+  color:#fff;background:linear-gradient(135deg,#7B1FA2,#4A148C);
+  border:2px solid #9C27B0;
+  box-shadow:0 0 10px rgba(156,39,176,.3),inset 0 1px 0 rgba(255,255,255,.15);
+  transition:all .2s;position:relative;overflow:hidden;
 }
-.top-ticker-inner{display:inline-block;animation:tkScroll 28s linear infinite;}
-@keyframes tkScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-.tkt{
-  display:inline-flex;align-items:center;gap:6px;margin:0 22px;
-  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(255,255,255,.5);
-}
-.tkt strong{color:var(--accent);}
-
-/* ── BATTLE BANNER ── */
-.battle{
-  position:relative;overflow:hidden;
-  background:linear-gradient(135deg,rgba(45,0,0,.7) 0%,rgba(8,8,22,.85) 50%,rgba(0,0,45,.7) 100%);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  padding:18px 0 14px;
-}
-.battle-rays{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
-.br{opacity:0;animation:brFlash 3s ease-in-out infinite;}
-.br1{animation-delay:0s;}.br2{animation-delay:.3s;}.br3{animation-delay:.6s;}
-.br4{animation-delay:.9s;}.br5{animation-delay:1.2s;}
-@keyframes brFlash{0%,100%{opacity:0;}45%,55%{opacity:1;}}
-.battle-inner{
-  display:flex;align-items:center;justify-content:center;gap:0;
-  max-width:700px;margin:0 auto;padding:0 24px;
-  position:relative;z-index:2;
-}
-.b-side{display:flex;align-items:center;gap:10px;flex:1;}
-.b-side-r{flex-direction:row-reverse;}
-.b-icon{
-  font-size:28px;
-  filter:drop-shadow(0 0 10px var(--bc)) drop-shadow(0 0 20px var(--bs));
-  animation:bPulse 2s ease-in-out infinite;flex-shrink:0;
-}
-.b-side-r .b-icon{animation-delay:.7s;}
-@keyframes bPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
-.b-info{display:flex;flex-direction:column;gap:2px;}
-.b-side-r .b-info{align-items:flex-end;}
-.b-name{
-  font-family:'Orbitron',sans-serif;font-size:9px;font-weight:900;
-  letter-spacing:.18em;text-transform:uppercase;
-}
-.b-chars{display:flex;flex-direction:column;gap:1px;}
-.bc{
-  font-size:10px;font-weight:600;color:var(--bcc);letter-spacing:.04em;
-  opacity:0;animation:bcAnim 4s ease-in-out infinite;animation-delay:var(--bd);
-}
-.bc-r{animation-name:bcAnimR;}
-@keyframes bcAnim{0%,8%{opacity:0;transform:translateX(-5px);}18%,82%{opacity:1;transform:translateX(0);}92%,100%{opacity:0;}}
-@keyframes bcAnimR{0%,8%{opacity:0;transform:translateX(5px);}18%,82%{opacity:1;transform:translateX(0);}92%,100%{opacity:0;}}
-/* VS */
-.b-vs{
-  position:relative;width:72px;height:72px;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.bvr{
-  position:absolute;border-radius:50%;
-  border:1.5px solid rgba(255,255,255,.13);
-  animation:bvSpin 3s linear infinite;
-}
-.bvr1{width:48px;height:48px;}
-.bvr2{width:66px;height:66px;border-color:rgba(255,255,255,.06);animation-direction:reverse;animation-duration:4s;}
-@keyframes bvSpin{from{transform:rotate(0);}to{transform:rotate(360deg);}}
-.bvt{
-  font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;color:#fff;
-  text-shadow:0 0 16px rgba(255,255,255,.35);
-  animation:bvPulse 1.6s ease-in-out infinite;position:relative;z-index:2;
-}
-@keyframes bvPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);text-shadow:0 0 32px rgba(255,255,255,.65);}}
-.bsp{
-  position:absolute;font-size:8px;opacity:0;
-  animation:bSpk 2s ease-in-out infinite;
-}
-.bsp1{top:2px;left:46%;color:#ff6060;animation-delay:0s;}
-.bsp2{bottom:2px;left:18%;color:#6080ff;animation-delay:.5s;}
-.bsp3{top:36%;right:2px;color:#ffcc00;animation-delay:1s;}
-.bsp4{bottom:18%;right:8%;color:#c084fc;animation-delay:1.5s;}
-@keyframes bSpk{
-  0%{opacity:0;transform:translate(0,0) scale(.5);}
-  50%{opacity:1;transform:translate(var(--tx),var(--ty)) scale(1.2);}
-  100%{opacity:0;transform:translate(var(--tx2),var(--ty2)) scale(.3);}
-}
-.sw-bar{
-  text-align:center;margin-top:10px;
-  font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(255,190,0,.55);position:relative;z-index:2;
+.nav-naz:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 18px rgba(156,39,176,.5),0 4px 12px rgba(0,0,0,.3);
+  background:linear-gradient(135deg,#9C27B0,#6A1B9A);
 }
 
-/* ── STOCK BADGES ── */
-.stock-badge{
-  position:absolute;top:6px;left:6px;z-index:10;
-  padding:3px 8px;border-radius:4px;
-  font-size:7px;font-weight:800;letter-spacing:.08em;
-  text-transform:uppercase;
-  box-shadow:0 2px 6px rgba(0,0,0,.3);
-  backdrop-filter:blur(6px);
-  white-space:nowrap;
-}
-.stock-ok{
-  background:rgba(34,197,94,.3);
-  border:1px solid rgba(34,197,94,.7);
-  color:#22c55e;
-}
-.stock-low{
-  background:rgba(245,158,11,.3);
-  border:1px solid rgba(245,158,11,.7);
-  color:#f59e0b;
-  animation:stockPulse 2s ease-in-out infinite;
-}
-.stock-out{
-  background:rgba(239,68,68,.3);
-  border:1px solid rgba(239,68,68,.7);
-  color:#ef4444;
-}
-@keyframes stockPulse{0%,100%{opacity:1;}50%{opacity:.6;}}
-
-.out-of-stock{
-  opacity:.5;
-  filter:grayscale(.7);
-}
-.out-of-stock .c-img{
-  opacity:.4;
-}
-.out-of-stock .c-add{
-  background:var(--red) !important;
-  cursor:not-allowed;
-  opacity:.5;
-}
-
-/* ── HERO INTRO ── */
+/* ═══ HERO ═══ */
 .hero{
-  display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
-  padding:52px 0 52px;
-  width:min(1240px,calc(100vw - 32px));margin:0 auto;
+  position:relative;z-index:1;overflow:hidden;
+  min-height:90vh;display:flex;align-items:center;
+  padding:60px clamp(16px,5vw,80px);
 }
-.hero-tag{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:5px 13px;border-radius:999px;margin-bottom:14px;
-  background:rgba(79,143,255,.1);border:1px solid rgba(79,143,255,.25);
-  font-size:11px;font-weight:600;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    linear-gradient(135deg, rgba(255,23,68,.15) 0%, transparent 40%),
+    linear-gradient(225deg, rgba(0,229,255,.1) 0%, transparent 40%),
+    repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(255,214,0,.02) 15deg, transparent 30deg);
 }
-.hero-tag span{
-  width:6px;height:6px;border-radius:50%;background:var(--accent);
-  animation:tagPulse 2s ease-in-out infinite;
+.hero-action-lines{
+  position:absolute;top:50%;left:50%;z-index:0;
+  width:200vmax;height:200vmax;
+  transform:translate(-50%,-50%);pointer-events:none;
+  background:repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(255,255,255,.01) 5deg, transparent 10deg);
+  animation:heroSpin 60s linear infinite;
 }
-@keyframes tagPulse{0%,100%{opacity:1;}50%{opacity:.3;}}
-.hero-h1{
-  font-family:'Orbitron',sans-serif;font-size:clamp(36px,4.5vw,62px);
-  font-weight:900;line-height:.95;letter-spacing:-.03em;margin-bottom:6px;
-  background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,.75));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+@keyframes heroSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.hero-content{position:relative;z-index:2;max-width:700px}
+.hero-badge{
+  display:inline-block;padding:6px 16px;margin-bottom:20px;
+  font-family:'Space Mono',monospace;font-size:11px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);
+  border:2px solid var(--cyan);background:rgba(0,229,255,.08);
+  animation:badgePulse 3s ease-in-out infinite;
 }
-.hero-h1-accent{
-  display:inline-block;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  position:relative;
+@keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(0,229,255,.3)}50%{box-shadow:0 0 20px 4px rgba(0,229,255,.15)}}
+.hero h1{
+  font-family:'Bangers',cursive;font-size:clamp(56px,8vw,110px);
+  line-height:.88;letter-spacing:.02em;
+  color:var(--yellow);
+  text-shadow:4px 4px 0 var(--red),-2px -2px 0 var(--cyan);
+  margin-bottom:20px;
 }
-.hero-h1-accent::after{
-  content:'';position:absolute;bottom:-4px;left:0;width:100%;height:4px;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  border-radius:999px;
-}
+.hero h1 .alt{color:var(--text);text-shadow:3px 3px 0 rgba(0,0,0,.5)}
 .hero-p{
-  font-size:clamp(14px,1.3vw,16px);line-height:1.6;color:var(--muted);margin-bottom:28px;max-width:520px;
+  font-size:clamp(16px,1.5vw,20px);font-weight:400;
+  color:var(--muted);line-height:1.5;max-width:500px;margin-bottom:32px;
 }
-.hero-btn-row{display:flex;gap:12px;flex-wrap:wrap;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
 .hero-btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:12px 22px;border-radius:var(--r);border:none;cursor:pointer;
-  font-family:'Inter',sans-serif;font-size:14px;font-weight:600;
-  text-decoration:none;transition:all .25s;
+  font-family:'Bangers',cursive;font-size:20px;letter-spacing:.04em;
+  padding:14px 32px;border:3px solid;cursor:pointer;
+  text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+  transition:all .2s;position:relative;
 }
 .hero-btn.pri{
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  color:#fff;box-shadow:0 6px 20px rgba(79,143,255,.3);
+  background:var(--yellow);color:#000;border-color:var(--yellow);
+  box-shadow:5px 5px 0 var(--red);
 }
-.hero-btn.pri:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(79,143,255,.45);}
-.hero-btn.sec{background:var(--card);color:var(--text);border:1px solid var(--border2);}
-.hero-btn.sec:hover{background:var(--bg3);border-color:rgba(255,255,255,.18);}
+.hero-btn.pri:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--red)}
+.hero-btn.sec{
+  background:transparent;color:var(--cyan);border-color:var(--cyan);
+  box-shadow:5px 5px 0 rgba(0,229,255,.3);
+}
+.hero-btn.sec:hover{background:rgba(0,229,255,.1);transform:translate(-3px,-3px);box-shadow:8px 8px 0 rgba(0,229,255,.4)}
 
-/* HERO FIGURA */
-.hero-fig-wrap{position:relative;display:flex;align-items:center;justify-content:center;}
-.hero-glow{
-  position:absolute;width:300px;height:300px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,180,0,.28) 0%,transparent 70%);
-  filter:blur(50px);pointer-events:none;transition:background 1.2s;
+/* HERO SHOWCASE */
+.hero-showcase{
+  position:absolute;right:clamp(20px,5vw,100px);top:50%;
+  transform:translateY(-50%);z-index:2;
 }
-.hero-card{
-  position:relative;z-index:2;width:280px;height:360px;border-radius:var(--rL);
-  background:linear-gradient(145deg,#0f0f1a,#1a1a2e);
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-  box-shadow:0 20px 70px rgba(0,0,0,.6),inset 0 2px 0 rgba(255,255,255,.05);
-  transition:background 1.2s;
+.showcase-card{
+  width:clamp(240px,22vw,320px);height:clamp(320px,30vw,420px);
+  border:4px solid var(--yellow);background:var(--bg2);
+  box-shadow:8px 8px 0 var(--red),-4px -4px 0 var(--cyan);
+  position:relative;overflow:hidden;
+  transform:rotate(3deg);transition:transform .4s;
 }
-.hero-fig-carousel{position:relative;width:100%;height:100%;}
-.hf-slide{
+.showcase-card:hover{transform:rotate(0deg) scale(1.04)}
+.showcase-slide{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  opacity:0;transform:scale(.85);transition:opacity 1.2s, transform 1.2s;pointer-events:none;
+  opacity:0;transition:opacity 1s;padding:20px;
 }
-.hf-slide.hf-active{opacity:1;transform:scale(1);pointer-events:auto;}
-.hf-slide img{max-width:85%;max-height:85%;object-fit:contain;}
+.showcase-slide.active{opacity:1}
+.showcase-slide img{max-width:90%;max-height:90%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(255,214,0,.3))}
+.showcase-name{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.9));
+  font-family:'Bangers',cursive;font-size:22px;color:var(--yellow);
+  text-align:center;text-shadow:2px 2px 0 var(--red);
+}
+.showcase-dots{
+  display:flex;gap:8px;justify-content:center;margin-top:16px;
+}
+.showcase-dot{
+  width:12px;height:12px;border:2px solid var(--yellow);cursor:pointer;
+  background:transparent;transition:all .2s;
+}
+.showcase-dot.on{background:var(--yellow);transform:rotate(45deg)}
 
-/* DOTS */
-.hf-dots{display:flex;gap:7px;margin-top:20px;justify-content:center;}
-.hf-dot{
-  width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.15);cursor:pointer;
-  border:1.5px solid transparent;transition:all .3s;
+/* ═══ MARQUEE ═══ */
+.marquee{
+  overflow:hidden;white-space:nowrap;padding:14px 0;
+  background:var(--yellow);border-top:3px solid var(--red);border-bottom:3px solid var(--red);
+  position:relative;z-index:1;
 }
-.hf-dot.hf-dot-on{
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  border-color:rgba(255,255,255,.3);transform:scale(1.2);
+.marquee-inner{display:inline-block;animation:marqueeScroll 20s linear infinite}
+@keyframes marqueeScroll{to{transform:translateX(-50%)}}
+.marquee span{
+  font-family:'Bangers',cursive;font-size:18px;color:#000;
+  margin:0 40px;letter-spacing:.06em;
 }
+.marquee span em{font-style:normal;color:var(--red)}
 
-/* STATS */
-.stats{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px;
-  width:min(900px,calc(100vw - 48px));margin-left:auto;margin-right:auto;
+/* ═══ STATS ═══ */
+.stats-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  position:relative;z-index:1;border-bottom:3px solid var(--border);
 }
-.stat{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r);
-  padding:16px 18px;text-align:center;transition:all .25s;
+.stat-box{
+  padding:36px 24px;text-align:center;
+  border-right:3px solid var(--border);
+  transition:background .3s;
 }
-.stat:hover{background:var(--bg3);border-color:var(--border2);transform:translateY(-2px);}
+.stat-box:last-child{border-right:none}
+.stat-box:hover{background:rgba(255,214,0,.03)}
 .stat-val{
-  font-family:'Orbitron',sans-serif;font-size:28px;font-weight:900;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  font-family:'Bangers',cursive;font-size:clamp(36px,4vw,56px);
+  color:var(--yellow);text-shadow:2px 2px 0 var(--red);
 }
-.stat-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
+.stat-label{
+  font-family:'Space Mono',monospace;font-size:11px;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:4px;
+}
 
-/* ──────────────────────────
-   CATÁLOGO
-────────────────────────── */
-.catalog-wrap{
-  width:min(1240px,calc(100vw - 32px));margin:64px auto;
-  padding:48px 32px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rL);
+/* ═══ FILTER TABS ═══ */
+.section-wrap{
+  position:relative;z-index:1;
+  padding:64px clamp(16px,3vw,40px);
 }
-.sec-header{text-align:center;margin-bottom:40px;}
+.sec-header{margin-bottom:48px}
 .sec-tag{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:5px 12px;border-radius:999px;
-  background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.25);
-  font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--accent2);margin-bottom:8px;
+  font-family:'Space Mono',monospace;font-size:11px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);
+  border-left:4px solid var(--cyan);padding-left:12px;margin-bottom:12px;
 }
-.sec-h2{
-  font-family:'Orbitron',sans-serif;font-size:clamp(28px,3.5vw,42px);font-weight:900;
-  background:linear-gradient(135deg,#fff,rgba(255,255,255,.65));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  margin-bottom:10px;
+.sec-title{
+  font-family:'Bangers',cursive;font-size:clamp(36px,5vw,60px);
+  color:var(--text);text-shadow:3px 3px 0 rgba(255,23,68,.3);
 }
-.sec-p{font-size:15px;color:var(--muted);max-width:620px;margin:0 auto;}
+.filter-bar{
+  display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;
+}
+.filter-btn{
+  font-family:'Bangers',cursive;font-size:16px;letter-spacing:.04em;
+  padding:10px 22px;border:2px solid var(--border);background:transparent;
+  color:var(--muted);cursor:pointer;transition:all .2s;
+}
+.filter-btn:hover{color:var(--yellow);border-color:var(--yellow)}
+.filter-btn.active{
+  background:var(--yellow);color:#000;border-color:var(--yellow);
+  box-shadow:3px 3px 0 var(--red);
+}
 
-.cat-grid{
-  display:grid;gap:24px;
+/* ═══ PRODUCT CARDS ═══ */
+.product-grid{
+  display:grid;gap:28px;
   grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
 }
-.cat-item{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r);
-  overflow:hidden;transition:all .3s;position:relative;
+.p-card{
+  position:relative;border:3px solid var(--border);
+  background:var(--card);overflow:hidden;
+  transition:all .3s;
 }
-.cat-item:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4);}
+.p-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--yellow),var(--red),var(--cyan));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s;
+}
+.p-card:hover::before{transform:scaleX(1)}
+.p-card:hover{
+  border-color:var(--yellow);
+  transform:translateY(-6px);
+  box-shadow:6px 6px 0 var(--red);
+}
+.p-card.out-of-stock{opacity:.4;filter:grayscale(.8)}
+.p-card.out-of-stock:hover{transform:none;box-shadow:none;border-color:var(--border)}
 
-.cat-img-wrap{
-  position:relative;width:100%;aspect-ratio:1;background:var(--bg3);
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
+.p-img-wrap{
+  position:relative;aspect-ratio:1;background:var(--bg3);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;border-bottom:3px solid var(--border);
 }
-.cat-img-wrap img{max-width:90%;max-height:90%;object-fit:contain;transition:transform .4s;}
-.cat-item:hover .cat-img-wrap img{transform:scale(1.06);}
+.p-img-wrap img{
+  max-width:85%;max-height:85%;object-fit:contain;
+  transition:transform .4s;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5));
+}
+.p-card:hover .p-img-wrap img{transform:scale(1.1) rotate(-2deg)}
+.p-img-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at center, transparent 50%, rgba(0,0,0,.4));
+  pointer-events:none;
+}
 
-.cat-badge{
-  position:absolute;top:10px;right:10px;
-  padding:4px 10px;border-radius:999px;
-  font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+/* BADGES */
+.p-badge{
+  position:absolute;top:12px;right:12px;z-index:5;
+  padding:5px 12px;font-family:'Bangers',cursive;font-size:13px;
+  letter-spacing:.06em;transform:rotate(3deg);
 }
-.cat-badge.nuevo{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;}
-.cat-badge.popular{background:var(--gold);color:#000;}
-.cat-badge.edicion{background:var(--red);color:#fff;}
+.p-badge.nuevo{background:var(--cyan);color:#000;box-shadow:2px 2px 0 rgba(0,0,0,.3)}
+.p-badge.popular{background:var(--yellow);color:#000;box-shadow:2px 2px 0 var(--red)}
+.p-badge.edicion{background:var(--red);color:#fff;box-shadow:2px 2px 0 rgba(0,0,0,.3)}
 
-.cat-body{padding:16px;}
-.cat-name{
-  font-family:'Orbitron',sans-serif;font-size:18px;font-weight:700;color:var(--text);
-  margin-bottom:6px;
+/* STOCK */
+.stock-badge{
+  position:absolute;top:12px;left:12px;z-index:5;
+  padding:4px 10px;font-family:'Space Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
 }
-.cat-desc{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:14px;}
-.cat-row{display:flex;justify-content:space-between;align-items:center;}
-.cat-price{
-  font-family:'Orbitron',sans-serif;font-size:24px;font-weight:900;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.cat-btn{
-  padding:8px 16px;border-radius:var(--r);border:none;cursor:pointer;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
-  font-size:13px;font-weight:600;transition:all .25s;
-}
-.cat-btn:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(79,143,255,.35);}
+.stock-ok{border:2px solid var(--green);color:var(--green);background:rgba(0,230,118,.1)}
+.stock-low{border:2px solid var(--orange);color:var(--orange);background:rgba(255,145,0,.1);animation:stockPulse 2s infinite}
+.stock-out{border:2px solid var(--red);color:var(--red);background:rgba(255,23,68,.1)}
+@keyframes stockPulse{0%,100%{opacity:1}50%{opacity:.5}}
 
-/* ──────────────────────────
-   CARRITO FLOTANTE
-────────────────────────── */
+.p-body{padding:18px}
+.p-name{
+  font-family:'Bangers',cursive;font-size:22px;color:var(--text);
+  margin-bottom:4px;letter-spacing:.02em;
+}
+.p-desc{font-size:14px;color:var(--muted);line-height:1.4;margin-bottom:14px}
+
+/* SIZE SELECT */
+.p-size-wrap{margin-bottom:12px}
+.p-size-label{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.p-sizes{display:flex;gap:6px}
+.p-size{
+  flex:1;padding:8px 4px;text-align:center;
+  border:2px solid var(--border);background:transparent;
+  color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .2s;
+}
+.p-size:hover{border-color:var(--yellow);color:var(--yellow)}
+.p-size.sel{background:var(--yellow);color:#000;border-color:var(--yellow)}
+.p-size small{display:block;font-size:10px;opacity:.7;margin-top:2px}
+
+/* PRICE TAG */
+.p-price-row{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+.p-price{
+  font-family:'Bangers',cursive;font-size:28px;
+  color:var(--yellow);text-shadow:2px 2px 0 var(--red);
+}
+.p-price-fixed{
+  font-family:'Bangers',cursive;font-size:28px;
+  color:var(--yellow);text-shadow:2px 2px 0 var(--red);
+  margin-bottom:12px;
+}
+.p-add{
+  padding:10px 20px;border:3px solid var(--yellow);background:var(--yellow);
+  color:#000;font-family:'Bangers',cursive;font-size:16px;
+  cursor:pointer;transition:all .2s;letter-spacing:.04em;
+  box-shadow:3px 3px 0 var(--red);
+}
+.p-add:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--red)}
+.out-of-stock .p-add{background:var(--red);border-color:var(--red);cursor:not-allowed;box-shadow:none;opacity:.5}
+
+/* ═══ CARRITO FLOTANTE ═══ */
 .cart-float{
-  position:fixed;bottom:24px;right:24px;z-index:150;
-  width:64px;height:64px;border-radius:50%;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;box-shadow:0 8px 32px rgba(79,143,255,.45);
-  transition:all .3s;border:none;color:#fff;font-size:24px;
+  position:fixed;bottom:28px;right:28px;z-index:150;
+  width:68px;height:68px;border:3px solid var(--yellow);
+  background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:26px;box-shadow:4px 4px 0 var(--red);
+  transition:all .2s;
 }
-.cart-float:hover{transform:scale(1.12) rotate(4deg);box-shadow:0 12px 48px rgba(79,143,255,.6);}
-.cart-badge{
-  position:absolute;top:-4px;right:-4px;
-  width:26px;height:26px;border-radius:50%;
+.cart-float:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--red)}
+.cart-count{
+  position:absolute;top:-8px;right:-8px;
+  min-width:24px;height:24px;padding:0 6px;
   background:var(--red);color:#fff;
+  font-family:'Bangers',cursive;font-size:14px;
   display:flex;align-items:center;justify-content:center;
-  font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;
-  border:2px solid var(--bg);animation:cartPulse 1.2s infinite;
+  border:2px solid var(--bg);
 }
-@keyframes cartPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
 
-/* PANEL DEL CARRITO */
+/* CART PANEL */
 .cart-panel{
-  position:fixed;right:24px;bottom:100px;z-index:140;
-  width:min(420px,calc(100vw - 48px));max-height:70vh;
-  background:var(--card);border:1px solid var(--border2);border-radius:var(--rL);
-  box-shadow:0 20px 60px rgba(0,0,0,.6);
-  opacity:0;transform:translateY(20px) scale(.96);pointer-events:none;
-  transition:all .35s;overflow:hidden;display:flex;flex-direction:column;
+  position:fixed;right:28px;bottom:108px;z-index:140;
+  width:min(420px,calc(100vw - 56px));max-height:70vh;
+  background:var(--card);border:3px solid var(--yellow);
+  box-shadow:8px 8px 0 var(--red);
+  opacity:0;transform:translateY(20px) scale(.95);
+  pointer-events:none;transition:all .3s;
+  display:flex;flex-direction:column;overflow:hidden;
 }
-.cart-panel.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
+.cart-panel.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
 .cart-head{
-  padding:18px 22px;border-bottom:1px solid var(--border);
-  font-family:'Orbitron',sans-serif;font-size:16px;font-weight:700;
+  padding:16px 20px;border-bottom:3px solid var(--border);
+  font-family:'Bangers',cursive;font-size:22px;color:var(--yellow);
+  text-shadow:2px 2px 0 var(--red);
 }
-.cart-list{flex:1;overflow-y:auto;padding:16px;}
-.cart-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;}
+.cart-list{flex:1;overflow-y:auto;padding:14px}
+.cart-empty{text-align:center;padding:40px 16px;color:var(--muted);font-family:'Space Mono',monospace;font-size:13px}
 .cart-item{
-  display:grid;grid-template-columns:60px 1fr auto;gap:12px;align-items:center;
-  padding:12px;margin-bottom:10px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);
+  display:grid;grid-template-columns:56px 1fr auto;gap:10px;align-items:center;
+  padding:10px;margin-bottom:8px;border:2px solid var(--border);background:var(--bg2);
 }
-.cart-img{width:60px;height:60px;border-radius:8px;background:var(--bg3);
-  display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.cart-img img{max-width:100%;max-height:100%;object-fit:contain;}
-.cart-info-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px;}
-.cart-info-price{font-size:13px;color:var(--muted);}
+.cart-img{width:56px;height:56px;background:var(--bg3);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cart-img img{max-width:100%;max-height:100%;object-fit:contain}
+.cart-info-name{font-family:'Bangers',cursive;font-size:15px;color:var(--text)}
+.cart-info-price{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted)}
 .cart-del{
-  background:none;border:none;color:var(--red);cursor:pointer;font-size:18px;padding:4px 8px;
-  border-radius:6px;transition:all .2s;
+  background:none;border:2px solid var(--red);color:var(--red);
+  cursor:pointer;font-size:14px;padding:6px 8px;transition:all .2s;
 }
-.cart-del:hover{background:rgba(239,68,68,.15);}
-.cart-foot{
-  padding:18px 22px;border-top:1px solid var(--border);
-}
-.cart-total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
-.cart-total-label{font-size:14px;font-weight:600;color:var(--muted);}
-.cart-total-val{
-  font-family:'Orbitron',sans-serif;font-size:26px;font-weight:900;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.cart-btn-row{display:flex;gap:10px;}
+.cart-del:hover{background:var(--red);color:#fff}
+.cart-foot{padding:16px 20px;border-top:3px solid var(--border)}
+.cart-total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.cart-total-label{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.cart-total-val{font-family:'Bangers',cursive;font-size:32px;color:var(--yellow);text-shadow:2px 2px 0 var(--red)}
+.cart-btn-row{display:flex;gap:10px}
 .cart-btn{
-  flex:1;padding:12px;border-radius:var(--r);border:none;cursor:pointer;
-  font-size:14px;font-weight:600;transition:all .25s;
+  flex:1;padding:12px;border:2px solid;cursor:pointer;
+  font-family:'Bangers',cursive;font-size:16px;letter-spacing:.04em;transition:all .2s;
 }
-.cart-btn.pri{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;}
-.cart-btn.pri:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.4);}
-.cart-btn.sec{background:var(--bg3);color:var(--text);border:1px solid var(--border2);}
-.cart-btn.sec:hover{background:var(--bg);border-color:rgba(255,255,255,.18);}
+.cart-btn.pri{background:#25D366;color:#fff;border-color:#25D366;box-shadow:3px 3px 0 rgba(0,0,0,.3)}
+.cart-btn.pri:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 rgba(0,0,0,.4)}
+.cart-btn.sec{background:transparent;color:var(--text);border-color:var(--border)}
+.cart-btn.sec:hover{border-color:var(--yellow);color:var(--yellow)}
 
-/* POPUP */
+/* ═══ POPUP ═══ */
 .popup-overlay{
-  position:fixed;inset:0;z-index:250;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);
-  display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all .3s;
+  position:fixed;inset:0;z-index:250;background:rgba(0,0,0,.85);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:all .3s;
 }
-.popup-overlay.open{opacity:1;pointer-events:auto;}
+.popup-overlay.open{opacity:1;pointer-events:auto}
 .popup{
-  width:min(480px,calc(100vw - 48px));background:var(--card);border:1px solid var(--border2);
-  border-radius:var(--rL);box-shadow:0 30px 90px rgba(0,0,0,.8);
-  padding:28px;transform:scale(.9);transition:transform .3s;
+  width:min(460px,calc(100vw - 40px));background:var(--card);border:3px solid var(--yellow);
+  box-shadow:8px 8px 0 var(--red);padding:28px;
+  transform:scale(.9) rotate(-2deg);transition:transform .3s;
 }
-.popup-overlay.open .popup{transform:scale(1);}
-.popup-h3{
-  font-family:'Orbitron',sans-serif;font-size:22px;font-weight:700;color:var(--text);
-  margin-bottom:18px;
-}
-.popup-label{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px;display:block;}
+.popup-overlay.open .popup{transform:scale(1) rotate(0)}
+.popup-h3{font-family:'Bangers',cursive;font-size:28px;color:var(--yellow);text-shadow:2px 2px 0 var(--red);margin-bottom:20px}
+.popup-label{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;display:block}
 .popup-input{
-  width:100%;padding:12px 14px;border-radius:var(--r);border:1px solid var(--border2);
-  background:var(--bg3);color:var(--text);font-size:14px;margin-bottom:14px;
-  font-family:'Inter',sans-serif;transition:all .2s;
+  width:100%;padding:12px;border:2px solid var(--border);background:var(--bg2);
+  color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:16px;
+  margin-bottom:14px;transition:border-color .2s;
 }
-.popup-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,143,255,.15);}
-.popup-btn-row{display:flex;gap:12px;margin-top:20px;}
+.popup-input:focus{outline:none;border-color:var(--yellow)}
+.popup-btn-row{display:flex;gap:12px;margin-top:20px}
 .popup-btn{
-  flex:1;padding:12px;border-radius:var(--r);border:none;cursor:pointer;
-  font-size:14px;font-weight:600;transition:all .25s;
+  flex:1;padding:12px;border:2px solid;cursor:pointer;
+  font-family:'Bangers',cursive;font-size:16px;transition:all .2s;
 }
-.popup-btn.wa{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;}
-.popup-btn.wa:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.4);}
-.popup-btn.email{background:var(--bg3);color:var(--text);border:1px solid var(--border2);}
-.popup-btn.email:hover{background:var(--bg);border-color:rgba(255,255,255,.18);}
+.popup-btn.wa{background:#25D366;color:#fff;border-color:#25D366;box-shadow:3px 3px 0 rgba(0,0,0,.3)}
+.popup-btn.wa:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 rgba(0,0,0,.4)}
+.popup-btn.email{background:transparent;color:var(--text);border-color:var(--border)}
+.popup-btn.email:hover{border-color:var(--cyan);color:var(--cyan)}
 
-/* CUESTIONARIO GUIADO */
-.quiz-wrap{
-  width:min(900px,calc(100vw - 32px));margin:64px auto;
-  background:var(--card);border:1px solid var(--border2);border-radius:var(--rL);
-  padding:36px;box-shadow:0 12px 50px rgba(0,0,0,.4);
+/* ═══ QUIZ ═══ */
+.quiz-section{
+  position:relative;z-index:1;
+  padding:64px clamp(16px,3vw,40px);
+  border-top:3px solid var(--yellow);
+  background:
+    linear-gradient(180deg, rgba(255,214,0,.03) 0%, transparent 40%),
+    var(--bg);
+}
+.quiz-card{
+  max-width:800px;margin:0 auto;
+  background:var(--card);border:3px solid var(--border);
+  padding:clamp(24px,4vw,48px);
 }
 .quiz-h2{
-  font-family:'Orbitron',sans-serif;font-size:clamp(24px,3vw,34px);font-weight:900;
-  text-align:center;margin-bottom:8px;
-  background:linear-gradient(135deg,#fff,rgba(255,255,255,.7));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  font-family:'Bangers',cursive;font-size:clamp(32px,4vw,48px);
+  text-align:center;color:var(--yellow);text-shadow:3px 3px 0 var(--red);
+  margin-bottom:8px;
 }
-.quiz-p{text-align:center;color:var(--muted);font-size:15px;margin-bottom:32px;}
-.quiz-progress{
-  display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:40px;
-}
+.quiz-p{text-align:center;color:var(--muted);font-size:16px;margin-bottom:36px}
+.quiz-progress{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:40px}
 .quiz-dot{
-  width:14px;height:14px;border-radius:50%;background:var(--bg3);border:2px solid var(--border2);
-  transition:all .3s;position:relative;
+  width:16px;height:16px;border:2px solid var(--border);
+  background:transparent;transition:all .3s;
 }
-.quiz-dot.done{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:var(--accent);}
+.quiz-dot.done{background:var(--yellow);border-color:var(--yellow);transform:rotate(45deg)}
 .quiz-dot.active{
-  background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:var(--accent);
-  transform:scale(1.3);box-shadow:0 0 16px rgba(79,143,255,.6);
+  background:var(--cyan);border-color:var(--cyan);
+  transform:rotate(45deg) scale(1.3);
+  box-shadow:0 0 12px rgba(0,229,255,.4);
 }
-.quiz-line{width:40px;height:2px;background:var(--border2);transition:all .5s;}
-.quiz-line.done{background:linear-gradient(90deg,var(--accent),var(--accent2));}
-
-.quiz-panel{display:none;}
-.quiz-panel.active{display:block;}
+.quiz-line{width:30px;height:3px;background:var(--border);transition:background .4s}
+.quiz-line.done{background:var(--yellow)}
+.quiz-panel{display:none}
+.quiz-panel.active{display:block}
 .quiz-panel-h3{
-  font-family:'Orbitron',sans-serif;font-size:20px;font-weight:700;color:var(--text);
-  margin-bottom:20px;text-align:center;
+  font-family:'Bangers',cursive;font-size:24px;color:var(--text);
+  text-align:center;margin-bottom:24px;
 }
-.quiz-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:24px;}
+.quiz-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:24px}
 .quiz-opt{
-  padding:16px;border-radius:var(--r);border:2px solid var(--border);
-  background:var(--bg2);cursor:pointer;text-align:center;transition:all .25s;
-  font-size:15px;font-weight:600;color:var(--text);
+  padding:16px;border:2px solid var(--border);background:transparent;
+  cursor:pointer;text-align:center;transition:all .2s;
+  font-family:'Bangers',cursive;font-size:18px;color:var(--muted);
 }
-.quiz-opt:hover{border-color:var(--border2);background:var(--bg3);}
+.quiz-opt:hover{border-color:var(--yellow);color:var(--yellow)}
 .quiz-opt.selected{
-  border-color:var(--accent);background:rgba(79,143,255,.12);
-  box-shadow:0 0 20px rgba(79,143,255,.25);
+  border-color:var(--cyan);color:var(--cyan);
+  background:rgba(0,229,255,.08);box-shadow:4px 4px 0 rgba(0,229,255,.2);
 }
-.quiz-input-label{font-size:14px;font-weight:600;color:var(--muted);margin-bottom:8px;display:block;}
+.quiz-input-label{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;display:block}
 .quiz-input{
-  width:100%;padding:12px 14px;border-radius:var(--r);border:1px solid var(--border2);
-  background:var(--bg3);color:var(--text);font-size:14px;margin-bottom:16px;
-  font-family:'Inter',sans-serif;transition:all .2s;
+  width:100%;padding:12px;border:2px solid var(--border);background:var(--bg2);
+  color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:16px;
+  margin-bottom:14px;transition:border-color .2s;
 }
-.quiz-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,143,255,.15);}
-.quiz-textarea{min-height:100px;resize:vertical;}
-
-.quiz-btn-row{display:flex;gap:12px;justify-content:center;}
+.quiz-input:focus{outline:none;border-color:var(--cyan)}
+.quiz-textarea{min-height:90px;resize:vertical}
+.quiz-btn-row{display:flex;gap:12px;justify-content:center}
 .quiz-btn{
-  padding:12px 24px;border-radius:var(--r);border:none;cursor:pointer;
-  font-size:14px;font-weight:600;transition:all .25s;
+  padding:12px 28px;border:2px solid;cursor:pointer;
+  font-family:'Bangers',cursive;font-size:18px;letter-spacing:.04em;transition:all .2s;
 }
-.quiz-btn.pri{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;}
-.quiz-btn.pri:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(79,143,255,.4);}
-.quiz-btn.sec{background:var(--bg3);color:var(--text);border:1px solid var(--border2);}
-.quiz-btn.sec:hover{background:var(--bg);border-color:rgba(255,255,255,.18);}
+.quiz-btn.pri{background:var(--yellow);color:#000;border-color:var(--yellow);box-shadow:3px 3px 0 var(--red)}
+.quiz-btn.pri:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--red)}
+.quiz-btn.sec{background:transparent;color:var(--muted);border-color:var(--border)}
+.quiz-btn.sec:hover{border-color:var(--yellow);color:var(--yellow)}
+.quiz-sum{border:2px solid var(--border);padding:18px;margin-bottom:24px;background:var(--bg2)}
+.quiz-sum-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)}
+.quiz-sum-row:last-child{border-bottom:none}
+.quiz-sum-key{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted)}
+.quiz-sum-val{font-size:14px;color:var(--text);font-weight:600}
+#quizSentOk{display:none;text-align:center;padding:60px 20px}
+#quizSentOk h3{font-family:'Bangers',cursive;font-size:36px;color:var(--green);margin-bottom:12px}
+#quizSentOk p{color:var(--muted);font-size:16px}
 
-.quiz-sum{
-  background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);
-  padding:20px;margin-bottom:24px;
+/* ═══ BIRTHDAY GLOW BUTTON (NAV) ═══ */
+.nav-bday{
+  position:relative;
+  font-family:'Bangers',cursive;font-size:15px;letter-spacing:.04em;
+  padding:8px 18px;border:none;cursor:pointer;text-decoration:none;
+  color:#000;background:linear-gradient(135deg,#FF6D00,#FFD600,#FF6D00);
+  background-size:200% 200%;animation:bdayShine 2s ease-in-out infinite;
+  box-shadow:0 0 12px rgba(255,214,0,.5),0 0 30px rgba(255,109,0,.3),inset 0 1px 0 rgba(255,255,255,.4);
+  text-shadow:0 1px 0 rgba(255,255,255,.3);
+  overflow:hidden;
 }
-.quiz-sum-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;
-  border-bottom:1px solid var(--border);}
-.quiz-sum-row:last-child{border-bottom:none;}
-.quiz-sum-key{font-size:13px;font-weight:600;color:var(--muted);}
-.quiz-sum-val{font-size:14px;color:var(--text);}
-
-#quizSentOk{
-  display:none;text-align:center;padding:60px 20px;
+.nav-bday::before{
+  content:'';position:absolute;top:-50%;left:-60%;width:60%;height:200%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);
+  transform:rotate(25deg);animation:bdaySweep 3s ease-in-out infinite;
 }
-#quizSentOk h3{
-  font-family:'Orbitron',sans-serif;font-size:28px;font-weight:900;margin-bottom:12px;
-  background:linear-gradient(135deg,var(--green),#10b981);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+@keyframes bdayShine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes bdaySweep{0%{left:-60%}100%{left:120%}}
+.nav-bday:hover{
+  transform:translateY(-2px) scale(1.05);
+  box-shadow:0 0 20px rgba(255,214,0,.7),0 0 50px rgba(255,109,0,.4),inset 0 1px 0 rgba(255,255,255,.5);
 }
-#quizSentOk p{color:var(--muted);font-size:15px;}
+.nav-bday .bday-emoji{animation:bdayBounce 1s ease-in-out infinite}
+@keyframes bdayBounce{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(10deg)}}
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;gap:32px;}
-  .hero-tag{margin-left:auto;margin-right:auto;}
-  .hero-h1,.hero-p{text-align:center;}
-  .hero-btn-row{justify-content:center;}
-  .stats{grid-template-columns:1fr;gap:12px;}
-  .battle-inner{flex-direction:column;gap:16px;}
-  .b-side{justify-content:center;}
-  .b-vs{width:60px;height:60px;}
-  .bvr1{width:40px;height:40px;}
-  .bvr2{width:55px;height:55px;}
-  .hf-dots{margin-top:16px;}
+/* ═══ BIRTHDAY PACKS SECTION ═══ */
+.bday-section{
+  position:relative;z-index:1;
+  padding:72px clamp(16px,3vw,40px);
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(255,109,0,.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(213,0,249,.06) 0%, transparent 50%),
+    var(--bg);
+  border-top:4px solid;border-bottom:4px solid;
+  border-image:linear-gradient(90deg,var(--orange),var(--yellow),var(--red),var(--purple),var(--cyan)) 1;
+  overflow:hidden;
+}
+.bday-section::before{
+  content:'🎂 🎈 🎁 🎉 🎂 🎈 🎁 🎉 🎂 🎈 🎁 🎉 🎂 🎈 🎁 🎉';
+  position:absolute;top:0;left:0;right:0;
+  font-size:20px;letter-spacing:12px;white-space:nowrap;
+  overflow:hidden;opacity:.08;pointer-events:none;
+  animation:bdayEmojis 15s linear infinite;
+}
+@keyframes bdayEmojis{to{transform:translateX(-50%)}}
+
+.bday-header{text-align:center;margin-bottom:48px}
+.bday-tag{
+  display:inline-block;padding:8px 20px;margin-bottom:14px;
+  font-family:'Space Mono',monospace;font-size:12px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:#000;background:var(--orange);
+  box-shadow:3px 3px 0 var(--red);
+  animation:bdayTagPulse 2s ease-in-out infinite;
+}
+@keyframes bdayTagPulse{0%,100%{box-shadow:3px 3px 0 var(--red)}50%{box-shadow:3px 3px 16px var(--orange)}}
+.bday-title{
+  font-family:'Bangers',cursive;font-size:clamp(40px,6vw,72px);
+  color:var(--orange);
+  text-shadow:4px 4px 0 var(--red),-2px -2px 0 var(--yellow);
+  margin-bottom:10px;
+}
+.bday-sub{font-size:18px;color:var(--muted);max-width:600px;margin:0 auto}
+
+/* PACK CARDS */
+.packs-grid{
+  display:grid;gap:28px;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  max-width:1200px;margin:0 auto;
+}
+.pack-card{
+  position:relative;background:var(--card);
+  border:3px solid var(--border);overflow:hidden;
+  transition:all .35s;
+}
+.pack-card::before{
+  content:'';position:absolute;inset:-2px;z-index:0;
+  background:linear-gradient(135deg,var(--orange),var(--yellow),var(--red),var(--purple));
+  opacity:0;transition:opacity .35s;
+}
+.pack-card::after{
+  content:'';position:absolute;inset:3px;z-index:1;background:var(--card);
+}
+.pack-card:hover::before{opacity:1}
+.pack-card:hover{
+  transform:translateY(-8px) rotate(-1deg);
+  box-shadow:8px 8px 0 rgba(255,109,0,.3);
+}
+.pack-card>*{position:relative;z-index:2}
+
+.pack-imgs{
+  display:grid;grid-template-columns:repeat(var(--cols,3),1fr);gap:0;
+  border-bottom:3px solid var(--border);
+  background:var(--bg3);
+}
+.pack-imgs .pack-fig{
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  padding:10px;border-right:2px solid var(--border);overflow:hidden;
+  transition:background .3s;
+}
+.pack-imgs .pack-fig:last-child{border-right:none}
+.pack-imgs .pack-fig img{max-width:85%;max-height:85%;object-fit:contain;transition:transform .3s}
+.pack-card:hover .pack-fig img{transform:scale(1.1)}
+.pack-fig-name{
+  font-family:'Space Mono',monospace;font-size:8px;color:var(--muted);
+  text-align:center;margin-top:4px;letter-spacing:.06em;text-transform:uppercase;
+  position:absolute;bottom:4px;left:0;right:0;
+}
+.pack-imgs .pack-fig{position:relative}
+
+.pack-body{padding:20px}
+.pack-universe{
+  font-family:'Space Mono',monospace;font-size:10px;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px;
+}
+.pack-name{
+  font-family:'Bangers',cursive;font-size:26px;color:var(--text);
+  margin-bottom:6px;
+}
+.pack-desc{font-size:14px;color:var(--muted);line-height:1.4;margin-bottom:16px}
+.pack-pricing{display:flex;align-items:flex-end;gap:12px;margin-bottom:4px}
+.pack-old-price{
+  font-family:'Space Mono',monospace;font-size:14px;
+  color:var(--red);text-decoration:line-through;opacity:.7;
+}
+.pack-price{
+  font-family:'Bangers',cursive;font-size:36px;
+  color:var(--orange);text-shadow:2px 2px 0 var(--red);
+}
+.pack-save{
+  font-family:'Space Mono',monospace;font-size:10px;font-weight:700;
+  padding:3px 8px;background:var(--green);color:#000;
+  letter-spacing:.08em;
+}
+.pack-add{
+  width:100%;margin-top:14px;padding:14px;border:3px solid var(--orange);
+  background:var(--orange);color:#000;
+  font-family:'Bangers',cursive;font-size:18px;letter-spacing:.04em;
+  cursor:pointer;transition:all .2s;
+  box-shadow:4px 4px 0 var(--red);
+}
+.pack-add:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--red)}
+
+/* Confetti burst on pack add */
+@keyframes confettiBurst{
+  0%{opacity:1;transform:translate(0,0) scale(1)}
+  100%{opacity:0;transform:translate(var(--cx),var(--cy)) scale(0) rotate(var(--cr))}
 }
 
-.wr{opacity:0;transform:translateY(30px);transition:opacity .8s, transform .8s;}
-.wr.show{opacity:1;transform:translateY(0);}
+/* ═══ FOOTER ═══ */
+footer{
+  position:relative;z-index:1;
+  border-top:3px solid var(--yellow);
+  padding:48px clamp(16px,3vw,40px);
+  text-align:center;
+}
+footer .foot-logo{
+  font-family:'Bangers',cursive;font-size:36px;color:var(--yellow);
+  text-shadow:3px 3px 0 var(--red);margin-bottom:12px;
+}
+footer p{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);line-height:1.8}
+footer a{color:var(--cyan);text-decoration:none}
+footer a:hover{text-decoration:underline}
 
-/* ANIMACIÓN FLY */
+/* ═══ SCROLL REVEAL ═══ */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
+.reveal.show{opacity:1;transform:translateY(0)}
+
+/* ═══ FLY ANIM ═══ */
 @keyframes flyToCart{
-  0%{transform:translate(0,0) scale(1);opacity:1;}
-  50%{transform:translate(var(--dx),var(--dy)) scale(.6);opacity:.7;}
-  100%{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0;}
+  0%{transform:translate(0,0) scale(1);opacity:1}
+  50%{transform:translate(var(--dx),var(--dy)) scale(.5);opacity:.6}
+  100%{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:900px){
+  .hero-showcase{display:none}
+  .hero{min-height:auto;padding:40px clamp(16px,3vw,40px)}
+  .hero h1{text-align:center}
+  .hero-p{text-align:center;margin-left:auto;margin-right:auto}
+  .hero-btns{justify-content:center}
+  .hero-badge{display:block;text-align:center}
+  .stats-row{grid-template-columns:1fr}
+  .stat-box{border-right:none;border-bottom:3px solid var(--border)}
+  .stat-box:last-child{border-bottom:none}
+  .nav-links{gap:2px}
+  .nav-a{font-size:14px;padding:6px 10px}
+  .nav-naz{font-size:12px;padding:5px 10px}
+}
+@media(max-width:500px){
+  .product-grid{grid-template-columns:1fr}
+  .filter-bar{gap:6px}
+  .filter-btn{font-size:14px;padding:8px 14px}
+  .packs-grid{grid-template-columns:1fr}
+  .pack-imgs{grid-template-columns:repeat(auto-fit,minmax(60px,1fr))!important}
+  .nav-bday{font-size:12px;padding:6px 12px}
 }
 </style>
 </head>
 <body>
 
+<div class="scanlines"></div>
+
+<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <div class="nav-logo-icon">🎮</div>
-    <span>Figuras 3D</span>
+    <div class="nav-logo-box">🎮</div>
+    Figuras 3D
   </a>
   <div class="nav-links">
     <a href="#catalogo" class="nav-a">Catálogo</a>
+    <a href="#cumple" class="nav-bday"><span class="bday-emoji">🎂</span> Packs Cumple</a>
+    <a href="https://jrrjaime.github.io/Nazareno-3d/nazarenos.html" class="nav-naz" target="_blank">✝ Nazarenos</a>
     <a href="#especial" class="nav-a">Pedido Especial</a>
     <a href="#contacto" class="nav-a pri">Contacto</a>
   </div>
 </nav>
 
-<!-- TOP TICKER -->
-<div class="top-ticker">
-  <div class="top-ticker-inner">
-    <span class="tkt"><strong>★</strong> Envío GRATIS en pedidos superiores a 50€</span>
-    <span class="tkt"><strong>⚡</strong> Impresión 3D de calidad premium</span>
-    <span class="tkt"><strong>🎁</strong> Personalizaciones disponibles</span>
-    <span class="tkt"><strong>🚀</strong> Entrega en 48-72h</span>
-    <span class="tkt"><strong>★</strong> Envío GRATIS en pedidos superiores a 50€</span>
-    <span class="tkt"><strong>⚡</strong> Impresión 3D de calidad premium</span>
-    <span class="tkt"><strong>🎁</strong> Personalizaciones disponibles</span>
-    <span class="tkt"><strong>🚀</strong> Entrega en 48-72h</span>
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-inner">
+    <span>★ Envío <em>GRATIS</em> en pedidos +50€</span>
+    <span>⚡ Impresión 3D <em>premium</em></span>
+    <span>🎯 Personalizaciones <em>disponibles</em></span>
+    <span>🚀 Entrega en <em>48-72h</em></span>
+    <span>📍 Desde <em>Granada</em></span>
+    <span>★ Envío <em>GRATIS</em> en pedidos +50€</span>
+    <span>⚡ Impresión 3D <em>premium</em></span>
+    <span>🎯 Personalizaciones <em>disponibles</em></span>
+    <span>🚀 Entrega en <em>48-72h</em></span>
+    <span>📍 Desde <em>Granada</em></span>
   </div>
 </div>
-
-<!-- BATTLE BANNER -->
-<div class="battle">
-  <svg class="battle-rays" viewBox="0 0 1200 100" preserveAspectRatio="none">
-    <polygon class="br br1" fill="rgba(255,70,70,.15)" points="600,50 610,0 620,50 610,100"/>
-    <polygon class="br br2" fill="rgba(100,150,255,.15)" points="580,50 590,0 600,50 590,100"/>
-    <polygon class="br br3" fill="rgba(255,200,0,.12)" points="620,50 630,0 640,50 630,100"/>
-    <polygon class="br br4" fill="rgba(200,100,255,.12)" points="560,50 570,0 580,50 570,100"/>
-    <polygon class="br br5" fill="rgba(255,255,255,.08)" points="640,50 650,0 660,50 650,100"/>
-  </svg>
-  <div class="battle-inner">
-    <div class="b-side">
-      <div class="b-icon" style="--bc:#ff4040;--bs:#ff4040;">⚔️</div>
-      <div class="b-info">
-        <div class="b-name" style="color:#ff6060;">Marvel</div>
-        <div class="b-chars">
-          <div class="bc" style="--bd:0s;--bcc:#ff8080;">Iron Man</div>
-          <div class="bc" style="--bd:.5s;--bcc:#ff8080;">Spider-Man</div>
-          <div class="bc" style="--bd:1s;--bcc:#ff8080;">Venom</div>
-        </div>
-      </div>
-    </div>
-    <div class="b-vs">
-      <div class="bvr bvr1"></div>
-      <div class="bvr bvr2"></div>
-      <div class="bvt">VS</div>
-      <div class="bsp bsp1" style="--tx:8px;--ty:-16px;--tx2:14px;--ty2:-24px;">★</div>
-      <div class="bsp bsp2" style="--tx:-12px;--ty:12px;--tx2:-18px;--ty2:18px;">✦</div>
-      <div class="bsp bsp3" style="--tx:14px;--ty:0;--tx2:22px;--ty2:0;">◆</div>
-      <div class="bsp bsp4" style="--tx:-10px;--ty:-8px;--tx2:-16px;--ty2:-14px;">●</div>
-    </div>
-    <div class="b-side b-side-r">
-      <div class="b-icon" style="--bc:#5080ff;--bs:#5080ff;">🌌</div>
-      <div class="b-info">
-        <div class="b-name" style="color:#6090ff;">Star Wars</div>
-        <div class="b-chars">
-          <div class="bc bc-r" style="--bd:.3s;--bcc:#7090ff;">Chewbacca</div>
-          <div class="bc bc-r" style="--bd:.8s;--bcc:#7090ff;">Yoda</div>
-          <div class="bc bc-r" style="--bd:1.3s;--bcc:#7090ff;">Stormtrooper</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="sw-bar">Nuevos lanzamientos cada semana · Únete a la batalla</div>
-</div>
-
-<div class="page">
 
 <!-- HERO -->
 <section class="hero">
-  <div>
-    <div class="hero-tag"><span></span> FIGURAS DE COLECCIÓN</div>
-    <h1 class="hero-h1">
-      Las mejores <span class="hero-h1-accent">figuras 3D</span> de tus universos favoritos
-    </h1>
+  <div class="hero-bg"></div>
+  <div class="hero-action-lines"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Colección 2026 — Impresión 3D</div>
+    <h1>Tus <span class="alt">héroes</span> en 3D</h1>
     <p class="hero-p">
-      Impresión 3D de calidad premium. Star Wars, Marvel, DC, Harry Potter y más. 
-      Envío a toda España desde Granada. Pide tu figura personalizada hoy mismo.
+      Figuras de colección impresas en 3D con calidad premium. Star Wars, Marvel, DC, Harry Potter y más. Envío a toda España desde Granada.
     </p>
-    <div class="hero-btn-row">
-      <a href="#catalogo" class="hero-btn pri">
-        <span>🚀</span> Ver Catálogo
-      </a>
-      <a href="#especial" class="hero-btn sec">
-        <span>⚡</span> Pedido Especial
-      </a>
+    <div class="hero-btns">
+      <a href="#catalogo" class="hero-btn pri">Ver Catálogo →</a>
+      <a href="#especial" class="hero-btn sec">⚡ Pedido Especial</a>
     </div>
   </div>
-
-  <div class="hero-fig-wrap">
-    <div class="hero-glow" id="heroGlow"></div>
-    <div class="hero-card" id="heroCard">
-      <div class="hero-fig-carousel" id="heroCarousel">
-        <!-- 13 slides -->
-        <div class="hf-slide hf-active"><img src="1776496567378_image.png" alt="Luke Skywalker"></div>
-        <div class="hf-slide"><img src="1776496603672_image.png" alt="Darth Vader"></div>
-        <div class="hf-slide"><img src="1776496887234_image.png" alt="Stormtrooper"></div>
-        <div class="hf-slide"><img src="1776496639585_image.png" alt="Princesa Leia"></div>
-        <div class="hf-slide"><img src="1776496816933_image.png" alt="Iron Man"></div>
-        <div class="hf-slide"><img src="1776496840704_image.png" alt="Batman"></div>
-        <div class="hf-slide"><img src="1776496698551_image.png" alt="Superman"></div>
-        <div class="hf-slide"><img src="severus.PNG" alt="Severus Snape"></div>
-        <div class="hf-slide"><img src="venon.PNG" alt="Venom"></div>
-        <div class="hf-slide"><img src="draco.PNG" alt="Draco Malfoy"></div>
-        <div class="hf-slide"><img src="chewaka.PNG" alt="Chewbacca"></div>
-        <div class="hf-slide"><img src="spiderman-black.png" alt="Spider-Man Black"></div>
-        <div class="hf-slide"><img src="deadpool.png" alt="Deadpool"></div>
-      </div>
+  <div class="hero-showcase">
+    <div class="showcase-card" id="showcaseCard">
+      <div class="showcase-slide active"><img src="1776496567378_image.png" alt="Luke Skywalker"><div class="showcase-name">Luke Skywalker</div></div>
+      <div class="showcase-slide"><img src="1776496603672_image.png" alt="Darth Vader"><div class="showcase-name">Darth Vader</div></div>
+      <div class="showcase-slide"><img src="venon.PNG" alt="Venom"><div class="showcase-name">Venom</div></div>
+      <div class="showcase-slide"><img src="severus.PNG" alt="Severus Snape"><div class="showcase-name">Severus Snape</div></div>
+      <div class="showcase-slide"><img src="deadpool.png" alt="Deadpool"><div class="showcase-name">Deadpool</div></div>
+      <div class="showcase-slide"><img src="spiderman-black.png" alt="Spider-Man Black"><div class="showcase-name">Spider-Man Black</div></div>
+      <div class="showcase-slide"><img src="draco.PNG" alt="Draco Malfoy"><div class="showcase-name">Draco Malfoy</div></div>
     </div>
-    <div class="hf-dots">
-      <div class="hf-dot hf-dot-on" data-i="0"></div>
-      <div class="hf-dot" data-i="1"></div>
-      <div class="hf-dot" data-i="2"></div>
-      <div class="hf-dot" data-i="3"></div>
-      <div class="hf-dot" data-i="4"></div>
-      <div class="hf-dot" data-i="5"></div>
-      <div class="hf-dot" data-i="6"></div>
-      <div class="hf-dot" data-i="7"></div>
-      <div class="hf-dot" data-i="8"></div>
-      <div class="hf-dot" data-i="9"></div>
-      <div class="hf-dot" data-i="10"></div>
-      <div class="hf-dot" data-i="11"></div>
-      <div class="hf-dot" data-i="12"></div>
-    </div>
+    <div class="showcase-dots" id="showcaseDots"></div>
   </div>
 </section>
 
 <!-- STATS -->
-<div class="stats wr">
-  <div class="stat">
-    <div class="stat-val">500+</div>
-    <div class="stat-label">Figuras vendidas</div>
+<div class="stats-row reveal">
+  <div class="stat-box"><div class="stat-val">500+</div><div class="stat-label">Figuras vendidas</div></div>
+  <div class="stat-box"><div class="stat-val">4.9★</div><div class="stat-label">Valoración media</div></div>
+  <div class="stat-box"><div class="stat-val">48h</div><div class="stat-label">Entrega rápida</div></div>
+</div>
+
+<!-- PACKS CUMPLEAÑOS -->
+<div class="bday-section" id="cumple">
+  <div class="bday-header reveal">
+    <div class="bday-tag">🎉 NUEVO</div>
+    <div class="bday-title">Packs de Cumpleaños</div>
+    <div class="bday-sub">Figuras para decorar tartas y fiestas temáticas. ¡El regalo perfecto para los peques!</div>
   </div>
-  <div class="stat">
-    <div class="stat-val">4.9★</div>
-    <div class="stat-label">Valoración media</div>
-  </div>
-  <div class="stat">
-    <div class="stat-val">48h</div>
-    <div class="stat-label">Entrega rápida</div>
+  <div class="packs-grid" id="packsGrid">
+    <!-- Generated by JS -->
   </div>
 </div>
 
 <!-- CATÁLOGO -->
-<div class="catalog-wrap wr" id="catalogo">
-  <div class="sec-header">
-    <div class="sec-tag">🎨 CATÁLOGO</div>
-    <h2 class="sec-h2">Explora nuestras figuras</h2>
-    <p class="sec-p">
-      Cada figura es impresa en 3D con materiales de alta calidad y acabados profesionales.
-      Elige tu favorita o pide una personalizada.
-    </p>
+<div class="section-wrap" id="catalogo">
+  <div class="sec-header reveal">
+    <div class="sec-tag">// CATÁLOGO</div>
+    <div class="sec-title">Elige tu figura</div>
   </div>
-  <div class="cat-grid" id="catalogGrid">
-    <!-- Se genera dinámicamente -->
+  <div class="filter-bar reveal" id="filterBar"></div>
+  <div class="product-grid" id="productGrid"></div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-section" id="especial">
+  <div class="quiz-card reveal">
+    <h2 class="quiz-h2">Pedido Especial</h2>
+    <p class="quiz-p">¿No encuentras lo que buscas? Cuéntanos y lo creamos. Solo 2 minutos.</p>
+    <div class="quiz-progress">
+      <div class="quiz-dot active" id="qdot-1"></div><div class="quiz-line" id="qline-1"></div>
+      <div class="quiz-dot" id="qdot-2"></div><div class="quiz-line" id="qline-2"></div>
+      <div class="quiz-dot" id="qdot-3"></div><div class="quiz-line" id="qline-3"></div>
+      <div class="quiz-dot" id="qdot-4"></div><div class="quiz-line" id="qline-4"></div>
+      <div class="quiz-dot" id="qdot-5"></div>
+    </div>
+    <div class="quiz-panel active" id="qp-1">
+      <h3 class="quiz-panel-h3">¿De qué universo?</h3>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="quizOpt(this,'universo','Star Wars','🌌')">🌌 Star Wars</div>
+        <div class="quiz-opt" onclick="quizOpt(this,'universo','Marvel','⚡')">⚡ Marvel</div>
+        <div class="quiz-opt" onclick="quizOpt(this,'universo','DC Comics','🦇')">🦇 DC Comics</div>
+        <div class="quiz-opt" onclick="quizOpt(this,'universo','Harry Potter','🪄')">🪄 Harry Potter</div>
+        <div class="quiz-opt" onclick="quizOpt(this,'universo','Anime','🎌')">🎌 Anime</div>
+        <div class="quiz-opt" onclick="quizOpt(this,'universo','Otro','🎬')">🎬 Otro</div>
+      </div>
+      <div class="quiz-btn-row"><button class="quiz-btn pri" onclick="quizNext(1)">Continuar →</button></div>
+    </div>
+    <div class="quiz-panel" id="qp-2">
+      <h3 class="quiz-panel-h3">Tamaño y cantidad</h3>
+      <div class="quiz-opts">
+        <div class="quiz-opt" onclick="quizOpt(this,'tamano','5cm')">5 cm</div>
+        <div class="quiz-opt" onclick="quizOpt(this,'tamano','10cm')">10 cm</div>
+        <div class="quiz-opt" onclick="quizOpt(this,'tamano','15cm')">15 cm</div>
+        <div class="quiz-opt" onclick="quizOpt(this,'tamano','Otro')">Otro</div>
+      </div>
+      <label class="quiz-input-label">Cantidad</label>
+      <input type="number" class="quiz-input" id="q-cantidad" value="1" min="1">
+      <div class="quiz-btn-row">
+        <button class="quiz-btn sec" onclick="quizBack(2)">← Atrás</button>
+        <button class="quiz-btn pri" onclick="quizNext(2)">Continuar →</button>
+      </div>
+    </div>
+    <div class="quiz-panel" id="qp-3">
+      <h3 class="quiz-panel-h3">Detalles del personaje</h3>
+      <label class="quiz-input-label">Personaje</label>
+      <input type="text" class="quiz-input" id="q-personaje" placeholder="Ej: Yoda, Thanos...">
+      <label class="quiz-input-label">Detalles extra (opcional)</label>
+      <textarea class="quiz-input quiz-textarea" id="q-detalles" placeholder="Color, pose, accesorios..."></textarea>
+      <div class="quiz-btn-row">
+        <button class="quiz-btn sec" onclick="quizBack(3)">← Atrás</button>
+        <button class="quiz-btn pri" onclick="quizNext(3)">Continuar →</button>
+      </div>
+    </div>
+    <div class="quiz-panel" id="qp-4">
+      <h3 class="quiz-panel-h3">Tus datos de contacto</h3>
+      <label class="quiz-input-label">Nombre</label>
+      <input type="text" class="quiz-input" id="q-nombre" placeholder="Tu nombre">
+      <label class="quiz-input-label">Teléfono</label>
+      <input type="tel" class="quiz-input" id="q-tel" placeholder="+34...">
+      <label class="quiz-input-label">Email</label>
+      <input type="email" class="quiz-input" id="q-email" placeholder="tu@email.com">
+      <div class="quiz-btn-row">
+        <button class="quiz-btn sec" onclick="quizBack(4)">← Atrás</button>
+        <button class="quiz-btn pri" onclick="quizNext(4)">Continuar →</button>
+      </div>
+    </div>
+    <div class="quiz-panel" id="qp-5">
+      <h3 class="quiz-panel-h3">Resumen de tu pedido</h3>
+      <div class="quiz-sum" id="quizSummary"></div>
+      <div class="quiz-btn-row">
+        <button class="quiz-btn sec" onclick="quizBack(5)">← Atrás</button>
+        <button class="quiz-btn pri" onclick="quizSend('wa')">Enviar por WhatsApp</button>
+        <button class="quiz-btn sec" onclick="quizSend('email')">Enviar por Email</button>
+      </div>
+    </div>
+    <div id="quizSentOk"><h3>¡Enviado!</h3><p>Recibirás respuesta lo antes posible. ¡Gracias!</p></div>
   </div>
 </div>
 
-<!-- CUESTIONARIO GUIADO -->
-<div class="quiz-wrap wr" id="especial">
-  <h2 class="quiz-h2">🎯 Pedido Especial</h2>
-  <p class="quiz-p">Cuéntanos qué figura quieres y te la creamos a medida. Solo tarda 2 minutos.</p>
-  
-  <div class="quiz-progress">
-    <div class="quiz-dot active" id="qdot-1"></div>
-    <div class="quiz-line" id="qline-1"></div>
-    <div class="quiz-dot" id="qdot-2"></div>
-    <div class="quiz-line" id="qline-2"></div>
-    <div class="quiz-dot" id="qdot-3"></div>
-    <div class="quiz-line" id="qline-3"></div>
-    <div class="quiz-dot" id="qdot-4"></div>
-    <div class="quiz-line" id="qline-4"></div>
-    <div class="quiz-dot" id="qdot-5"></div>
-  </div>
+<!-- FOOTER -->
+<footer id="contacto">
+  <div class="foot-logo">Figuras 3D</div>
+  <p>
+    Jaime Rivas · Granada, España<br>
+    <a href="https://wa.me/34618648370">WhatsApp: +34 618 648 370</a> · <a href="mailto:jaimerivasgranada@gmail.com">jaimerivasgranada@gmail.com</a><br>
+    Bot de seguimiento: <a href="https://t.me/Webjrr_bot">@Webjrr_bot</a>
+  </p>
+</footer>
 
-  <!-- PANEL 1: Universo -->
-  <div class="quiz-panel active" id="qp-1">
-    <h3 class="quiz-panel-h3">¿De qué universo quieres tu figura?</h3>
-    <div class="quiz-opts">
-      <div class="quiz-opt" onclick="quizOpt(this,'universo','Star Wars','🌌')">🌌 Star Wars</div>
-      <div class="quiz-opt" onclick="quizOpt(this,'universo','Marvel','⚡')">⚡ Marvel</div>
-      <div class="quiz-opt" onclick="quizOpt(this,'universo','DC Comics','🦇')">🦇 DC Comics</div>
-      <div class="quiz-opt" onclick="quizOpt(this,'universo','Harry Potter','🪄')">🪄 Harry Potter</div>
-      <div class="quiz-opt" onclick="quizOpt(this,'universo','Anime','🎌')">🎌 Anime</div>
-      <div class="quiz-opt" onclick="quizOpt(this,'universo','Otro','🎬')">🎬 Otro</div>
-    </div>
-    <div class="quiz-btn-row">
-      <button class="quiz-btn pri" onclick="quizNext(1)">Continuar →</button>
-    </div>
-  </div>
-
-  <!-- PANEL 2: Tamaño y cantidad -->
-  <div class="quiz-panel" id="qp-2">
-    <h3 class="quiz-panel-h3">¿Qué tamaño y cuántas figuras?</h3>
-    <label class="quiz-input-label">Tamaño</label>
-    <div class="quiz-opts">
-      <div class="quiz-opt" onclick="quizOpt(this,'tamano','10 cm')">10 cm</div>
-      <div class="quiz-opt" onclick="quizOpt(this,'tamano','15 cm')">15 cm</div>
-      <div class="quiz-opt" onclick="quizOpt(this,'tamano','20 cm')">20 cm</div>
-      <div class="quiz-opt" onclick="quizOpt(this,'tamano','Personalizado')">Personalizado</div>
-    </div>
-    <label class="quiz-input-label">Cantidad</label>
-    <input type="number" id="q-cantidad" class="quiz-input" value="1" min="1">
-    <div class="quiz-btn-row">
-      <button class="quiz-btn sec" onclick="quizBack(2)">← Atrás</button>
-      <button class="quiz-btn pri" onclick="quizNext(2)">Continuar →</button>
-    </div>
-  </div>
-
-  <!-- PANEL 3: Personaje y detalles -->
-  <div class="quiz-panel" id="qp-3">
-    <h3 class="quiz-panel-h3">Detalles de la figura</h3>
-    <label class="quiz-input-label">¿Qué personaje quieres?</label>
-    <input type="text" id="q-personaje" class="quiz-input" placeholder="Ej: Yoda, Iron Man, Batman...">
-    <label class="quiz-input-label">Detalles adicionales (opcional)</label>
-    <textarea id="q-detalles" class="quiz-input quiz-textarea" placeholder="Colores, pose, accesorios..."></textarea>
-    <div class="quiz-btn-row">
-      <button class="quiz-btn sec" onclick="quizBack(3)">← Atrás</button>
-      <button class="quiz-btn pri" onclick="quizNext(3)">Continuar →</button>
-    </div>
-  </div>
-
-  <!-- PANEL 4: Datos de contacto -->
-  <div class="quiz-panel" id="qp-4">
-    <h3 class="quiz-panel-h3">Tus datos de contacto</h3>
-    <label class="quiz-input-label">Nombre *</label>
-    <input type="text" id="q-nombre" class="quiz-input" placeholder="Tu nombre">
-    <label class="quiz-input-label">Teléfono</label>
-    <input type="tel" id="q-tel" class="quiz-input" placeholder="+34 600 000 000">
-    <label class="quiz-input-label">Email</label>
-    <input type="email" id="q-email" class="quiz-input" placeholder="tu@email.com">
-    <div class="quiz-btn-row">
-      <button class="quiz-btn sec" onclick="quizBack(4)">← Atrás</button>
-      <button class="quiz-btn pri" onclick="quizNext(4)">Ver Resumen →</button>
-    </div>
-  </div>
-
-  <!-- PANEL 5: Resumen y envío -->
-  <div class="quiz-panel" id="qp-5">
-    <h3 class="quiz-panel-h3">✅ Resumen de tu pedido</h3>
-    <div class="quiz-sum" id="quizSummary"></div>
-    <div class="quiz-btn-row">
-      <button class="quiz-btn sec" onclick="quizBack(5)">← Modificar</button>
-      <button class="quiz-btn pri" onclick="quizSend('wa')" style="background:linear-gradient(135deg,#25D366,#128C7E);">
-        📱 Enviar por WhatsApp
-      </button>
-      <button class="quiz-btn pri" onclick="quizSend('email')">
-        📧 Enviar por Email
-      </button>
-    </div>
-  </div>
-
-  <div id="quizSentOk">
-    <h3>✅ ¡Pedido enviado!</h3>
-    <p>Recibirás una respuesta en breve. Gracias por confiar en nosotros.</p>
-  </div>
-</div>
-
-</div>
-
-<!-- CARRITO FLOTANTE -->
-<button class="cart-float" id="cartFloat" onclick="document.getElementById('cartPanel').classList.toggle('open');">
-  🛒
-  <div class="cart-badge" id="cartBadge">0</div>
+<!-- CART FLOAT -->
+<button class="cart-float" id="cartFloat" onclick="toggleCart()">
+  🛒<div class="cart-count" id="cartBadge">0</div>
 </button>
 
+<!-- CART PANEL -->
 <div class="cart-panel" id="cartPanel">
-  <div class="cart-head">🛒 Mi Carrito</div>
-  <div class="cart-list" id="cartList">
-    <div class="cart-empty">Tu carrito está vacío</div>
-  </div>
+  <div class="cart-head">Tu Carrito</div>
+  <div class="cart-list" id="cartList"><div class="cart-empty">Vacío — ¡añade algo!</div></div>
   <div class="cart-foot">
     <div class="cart-total-row">
-      <div class="cart-total-label">Total:</div>
-      <div class="cart-total-val" id="cartTotal">0,00 €</div>
+      <div class="cart-total-label">Total</div>
+      <div class="cart-total-val" id="cartTotal">0.00 €</div>
     </div>
     <div class="cart-btn-row">
-      <button class="cart-btn pri" onclick="openCheckoutPopup('wa')">📱 WhatsApp</button>
       <button class="cart-btn sec" onclick="openCheckoutPopup('email')">📧 Email</button>
+      <button class="cart-btn pri" onclick="openCheckoutPopup('wa')">💬 WhatsApp</button>
     </div>
   </div>
 </div>
 
-<!-- POPUP CHECKOUT -->
-<div class="popup-overlay" id="popupOverlay">
+<!-- POPUP -->
+<div class="popup-overlay" id="popupOverlay" onclick="if(event.target===this)closePopup()">
   <div class="popup">
-    <h3 class="popup-h3">✅ Completa tu pedido</h3>
-    <label class="popup-label">Nombre *</label>
-    <input type="text" id="popupNombre" class="popup-input" placeholder="Tu nombre">
+    <h3 class="popup-h3">Finalizar Pedido</h3>
+    <label class="popup-label">Tu nombre *</label>
+    <input class="popup-input" id="popupNombre" placeholder="Nombre completo">
     <label class="popup-label">Teléfono (opcional)</label>
-    <input type="tel" id="popupTel" class="popup-input" placeholder="+34 600 000 000">
+    <input class="popup-input" id="popupTel" placeholder="+34...">
     <div class="popup-btn-row">
       <button class="popup-btn email" onclick="closePopup()">Cancelar</button>
       <button class="popup-btn wa" id="popupWaBtn">Enviar</button>
@@ -905,33 +936,24 @@ nav{
 </div>
 
 <script>
-/* ──────────────────────────
+/* ═══════════════════════════
    DATOS DEL CATÁLOGO
-────────────────────────── */
+═══════════════════════════ */
 var CATALOG = [
-  // FIGURAS STAR WARS (con precios por tamaño)
   {id:'luke',name:'Luke Skywalker',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496567378_image.png',desc:'Jedi de la saga Star Wars. Detalles increíbles.',badge:'popular',category:'star-wars',type:'figura'},
   {id:'darth',name:'Darth Vader',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496603672_image.png',desc:'El villano más icónico de todos los tiempos.',badge:'nuevo',category:'star-wars',type:'figura'},
   {id:'leia',name:'Princesa Leia',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496639585_image.png',desc:'La líder rebelde de Star Wars.',badge:'popular',category:'star-wars',type:'figura'},
-  {id:'trooper',name:'Stormtrooper',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496887234_image.png',desc:'Soldado del Imperio Galáctico. Perfecto para coleccionar.',badge:null,category:'star-wars',type:'figura'},
+  {id:'trooper',name:'Stormtrooper',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496887234_image.png',desc:'Soldado del Imperio Galáctico.',badge:null,category:'star-wars',type:'figura'},
   {id:'chewbacca',name:'Chewbacca',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'chewaka.PNG',desc:'El fiel copiloto del Halcón Milenario.',badge:'nuevo',category:'star-wars',type:'figura'},
-  
-  // FIGURAS DC COMICS (con precios por tamaño)
   {id:'superman',name:'Superman',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496698551_image.png',desc:'El Hombre de Acero. Calidad premium.',badge:null,category:'dc',type:'figura'},
   {id:'batman',name:'Batman',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496840704_image.png',desc:'El Caballero Oscuro de Gotham City.',badge:null,category:'dc',type:'figura'},
-  
-  // FIGURAS MARVEL (con precios por tamaño)
   {id:'ironman',name:'Iron Man',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776496816933_image.png',desc:'Tony Stark en su armadura Mark 50. Edición limitada.',badge:'edicion',category:'marvel',type:'figura'},
   {id:'venom',name:'Venom',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'venon.PNG',desc:'El simbionte más temible del universo Marvel.',badge:'nuevo',category:'marvel',type:'figura'},
   {id:'spiderman-black',name:'Spider-Man Black',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'spiderman-black.png',desc:'Spider-Man con el traje simbionte negro.',badge:'nuevo',category:'marvel',type:'figura'},
   {id:'deadpool',name:'Deadpool',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'deadpool.png',desc:'El mercenario bocazas de Marvel.',badge:'nuevo',category:'marvel',type:'figura'},
-  {id:'spiderman-classic',name:'Spider-Man Clásico',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776685294755_image.png',desc:'El trepamuros en su icónico traje clásico. Pose dinámica.',badge:'popular',category:'marvel',type:'figura'},
-  
-  // FIGURAS HARRY POTTER (con precios por tamaño)
-  {id:'severus',name:'Severus Snape',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'severus.PNG',desc:'El profesor de pociones de Hogwarts. Impresión detallada.',badge:'nuevo',category:'harry-potter',type:'figura'},
+  {id:'spiderman-classic',name:'Spider-Man Clásico',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'1776685294755_image.png',desc:'El trepamuros en su icónico traje clásico.',badge:'popular',category:'marvel',type:'figura'},
+  {id:'severus',name:'Severus Snape',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'severus.PNG',desc:'El profesor de pociones de Hogwarts.',badge:'nuevo',category:'harry-potter',type:'figura'},
   {id:'draco',name:'Draco Malfoy',prices:{'5cm':6.49,'10cm':12.99,'15cm':19.99},img:'draco.PNG',desc:'El rival de Harry Potter en Slytherin.',badge:'nuevo',category:'harry-potter',type:'figura'},
-  
-  // LLAVEROS DC COMICS (8 unidades a 0,70€)
   {id:'llavero_superman',name:'Llavero Superman',price:0.70,img:'llavero_superman.PNG',desc:'Llavero del logo de Superman.',badge:null,category:'llaveros',type:'llavero'},
   {id:'llavero_flash',name:'Llavero Flash',price:0.70,img:'flahs.PNG',desc:'Llavero del logo de Flash.',badge:null,category:'llaveros',type:'llavero'},
   {id:'llavero_linterna',name:'Llavero Linterna Verde',price:0.70,img:'linterna_verde.PNG',desc:'Llavero del logo de Linterna Verde.',badge:null,category:'llaveros',type:'llavero'},
@@ -944,541 +966,430 @@ var CATALOG = [
 
 var CART = [];
 var _pendingSend = null;
+var currentFilter = 'todos';
 
-/* ──────────────────────────
-   CONSTRUCCIÓN DEL CATÁLOGO
-────────────────────────── */
-function buildCatalog(){
-  var grid = document.getElementById('catalogGrid');
-  if(!grid) return;
-  grid.innerHTML = CATALOG.map(item=>{
-    var badgeHtml = item.badge ? `<div class="cat-badge ${item.badge}">${item.badge}</div>` : '';
-    
-    // Mostrar precios por tamaño o precio fijo
-    var priceHtml = '';
-    if(item.type === 'figura'){
-      priceHtml = `
-        <div style="margin-bottom:10px;">
-          <div style="font-size:11px;color:var(--muted);margin-bottom:6px;">Elige tamaño:</div>
-          <select id="size-${item.id}" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border2);background:var(--bg3);color:var(--text);font-size:13px;">
-            <option value="5cm">5cm - ${item.prices['5cm'].toFixed(2)}€</option>
-            <option value="10cm" selected>10cm - ${item.prices['10cm'].toFixed(2)}€</option>
-            <option value="15cm">15cm - ${item.prices['15cm'].toFixed(2)}€</option>
-          </select>
-        </div>
-      `;
-    } else {
-      priceHtml = `<div class="cat-price">${item.price.toFixed(2)} €</div>`;
-    }
-    
-    return `
-      <div class="cat-item c" data-id="${item.id}">
-        <div class="cat-img-wrap c-img-w">
-          ${badgeHtml}
-          <img src="${item.img}" class="c-img" alt="${item.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%2314141f%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238888aa%22 font-size=%2216%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EImagen no disponible%3C/text%3E%3C/svg%3E'">
-        </div>
-        <div class="cat-body">
-          <div class="cat-name">${item.name}</div>
-          <div class="cat-desc">${item.desc}</div>
-          ${priceHtml}
-          <button class="cat-btn c-add" onclick="addToCart('${item.id}',event)" style="width:100%;margin-top:8px;">
-            Añadir al carrito
-          </button>
-        </div>
-      </div>
-    `;
+/* ═══ PACKS CUMPLEAÑOS ═══ */
+var PACKS = [
+  {
+    id:'pack-star-wars',
+    name:'Pack Star Wars',
+    universe:'Star Wars',
+    uColor:'var(--cyan)',
+    desc:'Luke, Darth Vader y Stormtrooper para una tarta galáctica. Tamaño ideal para decorar tartas (5cm).',
+    figures:[
+      {id:'luke',name:'Luke',img:'1776496567378_image.png'},
+      {id:'darth',name:'Vader',img:'1776496603672_image.png'},
+      {id:'trooper',name:'Trooper',img:'1776496887234_image.png'}
+    ],
+    individualPrice:19.47, // 3 x 6.49
+    packPrice:14.99,
+    cols:3
+  },
+  {
+    id:'pack-marvel',
+    name:'Pack Marvel Heroes',
+    universe:'Marvel',
+    uColor:'var(--red)',
+    desc:'Spider-Man, Venom y Deadpool. Trío épico de acción para la fiesta más top.',
+    figures:[
+      {id:'spiderman-classic',name:'Spidey',img:'1776685294755_image.png'},
+      {id:'venom',name:'Venom',img:'venon.PNG'},
+      {id:'deadpool',name:'Deadpool',img:'deadpool.png'}
+    ],
+    individualPrice:19.47,
+    packPrice:14.99,
+    cols:3
+  },
+  {
+    id:'pack-dc',
+    name:'Pack DC Comics',
+    universe:'DC Comics',
+    uColor:'var(--cyan)',
+    desc:'Superman y Batman juntos. Los dos iconos para una fiesta de superhéroes.',
+    figures:[
+      {id:'superman',name:'Superman',img:'1776496698551_image.png'},
+      {id:'batman',name:'Batman',img:'1776496840704_image.png'}
+    ],
+    individualPrice:12.98,
+    packPrice:9.99,
+    cols:2
+  },
+  {
+    id:'pack-hogwarts',
+    name:'Pack Hogwarts',
+    universe:'Harry Potter',
+    uColor:'var(--purple)',
+    desc:'Severus Snape y Draco Malfoy. Para los fans del mundo mágico.',
+    figures:[
+      {id:'severus',name:'Snape',img:'severus.PNG'},
+      {id:'draco',name:'Draco',img:'draco.PNG'}
+    ],
+    individualPrice:12.98,
+    packPrice:9.99,
+    cols:2
+  },
+  {
+    id:'pack-mega',
+    name:'Pack MEGA Héroes',
+    universe:'Mix Universos',
+    uColor:'var(--orange)',
+    desc:'5 figuras de todos los universos: Spider-Man, Darth Vader, Batman, Chewbacca e Iron Man. ¡El pack definitivo!',
+    figures:[
+      {id:'spiderman-classic',name:'Spidey',img:'1776685294755_image.png'},
+      {id:'darth',name:'Vader',img:'1776496603672_image.png'},
+      {id:'batman',name:'Batman',img:'1776496840704_image.png'},
+      {id:'chewbacca',name:'Chewie',img:'chewaka.PNG'},
+      {id:'ironman',name:'Iron Man',img:'1776496816933_image.png'}
+    ],
+    individualPrice:32.45,
+    packPrice:24.99,
+    cols:5
+  }
+];
+
+/* ═══ STOCK ═══ */
+var STOCK_DB = {
+  'luke':{disponible:true,cantidad:5},'darth':{disponible:true,cantidad:8},'leia':{disponible:true,cantidad:4},
+  'trooper':{disponible:true,cantidad:10},'chewbacca':{disponible:true,cantidad:6},
+  'superman':{disponible:true,cantidad:7},'batman':{disponible:true,cantidad:9},
+  'ironman':{disponible:true,cantidad:3},'venom':{disponible:true,cantidad:6},
+  'spiderman-black':{disponible:true,cantidad:5},'deadpool':{disponible:true,cantidad:7},
+  'spiderman-classic':{disponible:true,cantidad:4},
+  'severus':{disponible:true,cantidad:8},'draco':{disponible:true,cantidad:6},
+  'llavero_superman':{disponible:true,cantidad:15},'llavero_flash':{disponible:true,cantidad:12},
+  'llavero_linterna':{disponible:true,cantidad:10},'llavero_batman':{disponible:true,cantidad:20},
+  'llavero_dc':{disponible:true,cantidad:18},'llavero_jl':{disponible:true,cantidad:8},
+  'llavero_ww':{disponible:true,cantidad:14},'llavero_aquaman':{disponible:true,cantidad:11}
+};
+
+function loadStock(){var s=localStorage.getItem('figuras3d_stock');if(s)try{STOCK_DB=JSON.parse(s)}catch(e){}}
+function saveStock(){localStorage.setItem('figuras3d_stock',JSON.stringify(STOCK_DB))}
+function isAvailable(id){return STOCK_DB[id]&&STOCK_DB[id].disponible&&STOCK_DB[id].cantidad>0}
+
+function updateStockBadge(id){
+  var card=document.querySelector('.p-card[data-id="'+id+'"]');
+  if(!card) return;
+  var badge=card.querySelector('.stock-badge');
+  if(!badge){badge=document.createElement('div');badge.className='stock-badge';card.querySelector('.p-img-wrap').appendChild(badge)}
+  var s=STOCK_DB[id];
+  if(!s||!s.disponible||s.cantidad===0){badge.textContent='AGOTADO';badge.className='stock-badge stock-out';card.classList.add('out-of-stock')}
+  else if(s.cantidad<=2){badge.textContent='¡ÚLTIMAS '+s.cantidad+'!';badge.className='stock-badge stock-low';card.classList.remove('out-of-stock')}
+  else{badge.textContent='DISPONIBLE';badge.className='stock-badge stock-ok';card.classList.remove('out-of-stock')}
+}
+
+/* ═══ FILTERS ═══ */
+var CATEGORIES = [
+  {key:'todos',label:'Todos'},
+  {key:'star-wars',label:'Star Wars'},
+  {key:'marvel',label:'Marvel'},
+  {key:'dc',label:'DC Comics'},
+  {key:'harry-potter',label:'Harry Potter'},
+  {key:'llaveros',label:'Llaveros'}
+];
+
+function buildFilters(){
+  var bar=document.getElementById('filterBar');
+  bar.innerHTML=CATEGORIES.map(function(c){
+    return '<button class="filter-btn'+(c.key==='todos'?' active':'')+'" data-cat="'+c.key+'" onclick="filterCat(\''+c.key+'\')">'+c.label+'</button>';
   }).join('');
 }
 
-/* ──────────────────────────
-   CARRITO
-────────────────────────── */
-function addToCart(itemId, event){
-  var item = CATALOG.find(x=>x.id===itemId);
-  if(!item) return;
-  
-  // Verificar stock
-  if(!isAvailable(itemId)){
-    alert('⚠️ Este producto está agotado actualmente.');
-    return;
-  }
-  
-  var size = '10cm'; // por defecto
-  var price = item.price || item.prices['10cm'];
-  
-  // Si es figura, obtener tamaño seleccionado
-  if(item.type === 'figura'){
-    var sizeSelect = document.getElementById('size-' + itemId);
-    if(sizeSelect){
-      size = sizeSelect.value;
-      price = item.prices[size];
+function filterCat(cat){
+  currentFilter=cat;
+  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.toggle('active',b.dataset.cat===cat)});
+  document.querySelectorAll('.p-card').forEach(function(c){
+    if(cat==='todos') c.style.display='';
+    else c.style.display=c.dataset.cat===cat?'':'none';
+  });
+}
+
+/* ═══ BUILD CATALOG ═══ */
+function buildCatalog(){
+  var grid=document.getElementById('productGrid');
+  grid.innerHTML=CATALOG.map(function(item){
+    var badgeHtml=item.badge?'<div class="p-badge '+item.badge+'">'+item.badge.toUpperCase()+'</div>':'';
+    var errImg="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect fill='%231a1a1a' width='200' height='200'/%3E%3Ctext x='50%25' y='50%25' fill='%23888' font-size='14' text-anchor='middle' dominant-baseline='middle'%3E?%3C/text%3E%3C/svg%3E";
+    var priceHtml='';
+    if(item.type==='figura'){
+      priceHtml='<div class="p-size-wrap"><div class="p-size-label">Tamaño</div><div class="p-sizes">';
+      ['5cm','10cm','15cm'].forEach(function(sz){
+        priceHtml+='<button class="p-size'+(sz==='10cm'?' sel':'')+'" data-sz="'+sz+'" onclick="pickSize(\''+item.id+'\',\''+sz+'\',this)">'+sz+'<small>'+item.prices[sz].toFixed(2)+'€</small></button>';
+      });
+      priceHtml+='</div></div>';
+      priceHtml+='<div class="p-price-row"><div class="p-price" id="price-'+item.id+'">'+item.prices['10cm'].toFixed(2)+' €</div>';
+      priceHtml+='<button class="p-add c-add" onclick="addToCart(\''+item.id+'\',event)">Añadir</button></div>';
+    } else {
+      priceHtml='<div class="p-price-fixed">'+item.price.toFixed(2)+' €</div>';
+      priceHtml+='<button class="p-add c-add" style="width:100%" onclick="addToCart(\''+item.id+'\',event)">Añadir al carrito</button>';
     }
+    return '<div class="p-card c reveal" data-id="'+item.id+'" data-cat="'+item.category+'">'+
+      '<div class="p-img-wrap">'+badgeHtml+'<img src="'+item.img+'" alt="'+item.name+'" onerror="this.src=\''+errImg+'\'"></div>'+
+      '<div class="p-body"><div class="p-name">'+item.name+'</div><div class="p-desc">'+item.desc+'</div>'+priceHtml+'</div></div>';
+  }).join('');
+}
+
+function pickSize(id,sz,btn){
+  var card=btn.closest('.p-card');
+  card.querySelectorAll('.p-size').forEach(function(b){b.classList.remove('sel')});
+  btn.classList.add('sel');
+  var item=CATALOG.find(function(x){return x.id===id});
+  if(item&&item.prices){
+    var priceEl=document.getElementById('price-'+id);
+    if(priceEl) priceEl.textContent=item.prices[sz].toFixed(2)+' €';
   }
-  
-  /* ANIMACIÓN FLY */
+}
+
+/* ═══ CART ═══ */
+function addToCart(itemId,event){
+  var item=CATALOG.find(function(x){return x.id===itemId});
+  if(!item)return;
+  if(!isAvailable(itemId)){alert('⚠️ Producto agotado.');return}
+  var size='10cm',price=item.price||item.prices['10cm'];
+  if(item.type==='figura'){
+    var card=document.querySelector('.p-card[data-id="'+itemId+'"]');
+    var selBtn=card?card.querySelector('.p-size.sel'):null;
+    if(selBtn){size=selBtn.dataset.sz;price=item.prices[size]}
+  }
+  /* FLY ANIM */
   if(event){
-    var btn = event.target.closest('.cat-btn');
-    var cartBtn = document.getElementById('cartFloat');
-    var rect1 = btn.getBoundingClientRect();
-    var rect2 = cartBtn.getBoundingClientRect();
-    var dx = rect2.left - rect1.left;
-    var dy = rect2.top - rect1.top;
-    
-    var clone = document.createElement('div');
-    clone.textContent = '🛒';
-    clone.style.cssText = `
-      position:fixed;
-      top:${rect1.top}px;
-      left:${rect1.left}px;
-      font-size:20px;
-      pointer-events:none;
-      z-index:9999;
-      animation:flyToCart .8s ease-in-out forwards;
-    `;
-    clone.style.setProperty('--dx', dx+'px');
-    clone.style.setProperty('--dy', dy+'px');
-    document.body.appendChild(clone);
-    setTimeout(()=>clone.remove(),800);
+    var btn=event.target.closest('.p-add');
+    var cf=document.getElementById('cartFloat');
+    var r1=btn.getBoundingClientRect(),r2=cf.getBoundingClientRect();
+    var cl=document.createElement('div');
+    cl.textContent='⚡';cl.style.cssText='position:fixed;top:'+r1.top+'px;left:'+r1.left+'px;font-size:22px;pointer-events:none;z-index:9999;animation:flyToCart .7s ease-in-out forwards;';
+    cl.style.setProperty('--dx',(r2.left-r1.left)+'px');cl.style.setProperty('--dy',(r2.top-r1.top)+'px');
+    document.body.appendChild(cl);setTimeout(function(){cl.remove()},700);
   }
-
-  var cartKey = itemId + (item.type === 'figura' ? '-' + size : '');
-  var existing = CART.find(x=>x.cartKey===cartKey);
-  
-  if(existing) {
-    existing.qty++;
-  } else {
-    CART.push({
-      id:itemId,
-      cartKey:cartKey,
-      name:item.name + (item.type === 'figura' ? ' (' + size + ')' : ''),
-      price:price,
-      img:item.img,
-      qty:1,
-      size:size
-    });
-  }
+  var cartKey=itemId+(item.type==='figura'?'-'+size:'');
+  var ex=CART.find(function(x){return x.cartKey===cartKey});
+  if(ex)ex.qty++;
+  else CART.push({id:itemId,cartKey:cartKey,name:item.name+(item.type==='figura'?' ('+size+')':''),price:price,img:item.img,qty:1,size:size});
   renderCart();
 }
 
-function removeFromCart(cartKey){
-  CART = CART.filter(x=>x.cartKey!==cartKey);
-  renderCart();
-}
+function removeFromCart(cartKey){CART=CART.filter(function(x){return x.cartKey!==cartKey});renderCart()}
 
 function renderCart(){
-  var badge = document.getElementById('cartBadge');
-  var list = document.getElementById('cartList');
-  var total = document.getElementById('cartTotal');
-  
-  var count = CART.reduce((sum,x)=>sum+x.qty,0);
-  var totalPrice = CART.reduce((sum,x)=>sum+(x.price*x.qty),0);
-  
-  badge.textContent = count;
-  total.textContent = totalPrice.toFixed(2) + ' €';
-  
-  if(CART.length===0){
-    list.innerHTML = '<div class="cart-empty">Tu carrito está vacío</div>';
-  } else {
-    list.innerHTML = CART.map(item=>`
-      <div class="cart-item">
-        <div class="cart-img"><img src="${item.img}" alt="${item.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22%3E%3Crect fill=%22%2314141f%22 width=%2260%22 height=%2260%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238888aa%22 font-size=%228%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E?%3C/text%3E%3C/svg%3E'"></div>
-        <div class="cart-info">
-          <div class="cart-info-name">${item.name}</div>
-          <div class="cart-info-price">${item.price.toFixed(2)} € × ${item.qty}</div>
-        </div>
-        <button class="cart-del" onclick="removeFromCart('${item.cartKey}')">🗑</button>
-      </div>
-    `).join('');
-  }
+  var badge=document.getElementById('cartBadge');
+  var list=document.getElementById('cartList');
+  var total=document.getElementById('cartTotal');
+  var count=CART.reduce(function(s,x){return s+x.qty},0);
+  var tp=CART.reduce(function(s,x){return s+x.price*x.qty},0);
+  badge.textContent=count;
+  total.textContent=tp.toFixed(2)+' €';
+  if(!CART.length){list.innerHTML='<div class="cart-empty">Vacío — ¡añade algo!</div>';return}
+  var errImg="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Crect fill='%231a1a1a' width='56' height='56'/%3E%3Ctext x='50%25' y='50%25' fill='%23888' font-size='8' text-anchor='middle' dominant-baseline='middle'%3E?%3C/text%3E%3C/svg%3E";
+  list.innerHTML=CART.map(function(i){return '<div class="cart-item"><div class="cart-img"><img src="'+i.img+'" onerror="this.src=\''+errImg+'\'"></div><div><div class="cart-info-name">'+i.name+'</div><div class="cart-info-price">'+i.price.toFixed(2)+' € × '+i.qty+'</div></div><button class="cart-del" onclick="removeFromCart(\''+i.cartKey+'\')">✕</button></div>'}).join('');
 }
 
-function buildCartMsg(nombre, tel){
-  const numPedido = 'FIG-' + Date.now().toString().slice(-6);
-  var lines = [
-    '✅ ¡PEDIDO RECIBIDO!',
-    '',
-    '📦 ID de pedido: #'+numPedido,
-    '👤 Cliente: '+nombre,
-    tel ? '📱 Teléfono: '+tel : '',
-    '',
-    '── Productos ──'
-  ];
-  CART.forEach(item=>{
-    lines.push(`• ${item.name} × ${item.qty} — ${(item.price*item.qty).toFixed(2)} €`);
-  });
-  lines.push('');
-  lines.push('💰 Total: '+CART.reduce((s,x)=>s+(x.price*x.qty),0).toFixed(2)+' €');
-  lines.push('');
-  lines.push('🔔 Consulta el estado de tu pedido en tiempo real:');
-  lines.push('👉 https://t.me/Webjrr_bot');
-  lines.push('');
-  lines.push('Escribe /consultarpedido en el bot e introduce tu número de pedido: #'+numPedido);
-  lines.push('');
-  lines.push('¡Gracias por confiar en Figuras 3D!');
-  return lines.filter(l=>l!==null&&l!==undefined).join('\n');
+function toggleCart(){document.getElementById('cartPanel').classList.toggle('open')}
+
+function buildCartMsg(nombre,tel){
+  var n='FIG-'+Date.now().toString().slice(-6);
+  var lines=['✅ ¡PEDIDO RECIBIDO!','','📦 ID: #'+n,'👤 '+nombre];
+  if(tel)lines.push('📱 '+tel);
+  lines.push('','── Productos ──');
+  CART.forEach(function(i){lines.push('• '+i.name+' × '+i.qty+' — '+(i.price*i.qty).toFixed(2)+' €')});
+  lines.push('','💰 Total: '+CART.reduce(function(s,x){return s+x.price*x.qty},0).toFixed(2)+' €');
+  lines.push('','🔔 Seguimiento: https://t.me/Webjrr_bot','Escribe /consultarpedido · Nº #'+n,'','¡Gracias por confiar en Figuras 3D!');
+  return lines.join('\n');
 }
 
-function openCheckoutPopup(type){
-  if(CART.length===0){alert('Tu carrito está vacío');return;}
-  _pendingSend = type;
+function openCheckoutPopup(){
+  if(!CART.length){alert('Tu carrito está vacío');return}
   document.getElementById('popupOverlay').classList.add('open');
   document.getElementById('popupNombre').focus();
 }
-function closePopup(){document.getElementById('popupOverlay').classList.remove('open');_pendingSend=null;}
+function closePopup(){document.getElementById('popupOverlay').classList.remove('open');_pendingSend=null}
 function sendFromPopup(type){
-  const nombre=document.getElementById('popupNombre').value.trim();
-  if(!nombre){document.getElementById('popupNombre').style.borderColor='#ef4444';return;}
+  var nombre=document.getElementById('popupNombre').value.trim();
+  if(!nombre){document.getElementById('popupNombre').style.borderColor='var(--red)';return}
   document.getElementById('popupNombre').style.borderColor='';
-  const tel=document.getElementById('popupTel').value.trim();
-  const msg=buildCartMsg(nombre,tel);
-  if(type==='wa') window.open(`https://wa.me/34618648370?text=${encodeURIComponent(msg)}`,'_blank');
-  else {
-    const subj=encodeURIComponent(`Pedido Figuras 3D · ${nombre}`);
-    window.location.href=`mailto:jaimerivasgranada@gmail.com?subject=${subj}&body=${encodeURIComponent(msg)}`;
-  }
+  var tel=document.getElementById('popupTel').value.trim();
+  var msg=buildCartMsg(nombre,tel);
+  if(type==='wa')window.open('https://wa.me/34618648370?text='+encodeURIComponent(msg),'_blank');
+  else{var subj=encodeURIComponent('Pedido Figuras 3D · '+nombre);window.location.href='mailto:jaimerivasgranada@gmail.com?subject='+subj+'&body='+encodeURIComponent(msg)}
   closePopup();
 }
 
-/* ── CUESTIONARIO GUIADO ── */
-var QUIZ_DATA = { universo:'', universoIcon:'', tamano:'', cantidad:'', personaje:'', detalles:'', nombre:'', tel:'', email:'' };
-var QUIZ_TOTAL = 4;
-
-function quizOpt(btn, key, val, icon){
-  var panel = btn.closest('.quiz-panel');
-  panel.querySelectorAll('.quiz-opt').forEach(function(b){ b.classList.remove('selected'); });
-  btn.classList.add('selected');
-  QUIZ_DATA[key] = val;
-  if(icon) QUIZ_DATA[key+'Icon'] = icon;
+/* ═══ QUIZ ═══ */
+var QUIZ_DATA={universo:'',universoIcon:'',tamano:'',cantidad:'',personaje:'',detalles:'',nombre:'',tel:'',email:''};
+function quizOpt(btn,key,val,icon){
+  btn.closest('.quiz-panel').querySelectorAll('.quiz-opt').forEach(function(b){b.classList.remove('selected')});
+  btn.classList.add('selected');QUIZ_DATA[key]=val;if(icon)QUIZ_DATA[key+'Icon']=icon;
 }
-
 function quizGoTo(step){
   for(var i=1;i<=5;i++){
-    var panel = document.getElementById('qp-'+i);
-    if(panel) panel.classList.toggle('active', i===step);
-    var dot = document.getElementById('qdot-'+i);
-    if(dot){
-      dot.classList.remove('active','done');
-      if(i < step) dot.classList.add('done');
-      else if(i === step) dot.classList.add('active');
-    }
-    var line = document.getElementById('qline-'+i);
-    if(line) line.classList.toggle('done', i < step);
+    var p=document.getElementById('qp-'+i);if(p)p.classList.toggle('active',i===step);
+    var d=document.getElementById('qdot-'+i);if(d){d.classList.remove('active','done');if(i<step)d.classList.add('done');else if(i===step)d.classList.add('active')}
+    var l=document.getElementById('qline-'+i);if(l)l.classList.toggle('done',i<step);
   }
 }
-
 function quizNext(step){
-  if(step===1){
-    if(!QUIZ_DATA.universo){ alert('Por favor, elige un universo.'); return; }
-    quizGoTo(2);
-  } else if(step===2){
-    if(!QUIZ_DATA.tamano){ alert('Por favor, elige un tamaño.'); return; }
-    QUIZ_DATA.cantidad = document.getElementById('q-cantidad').value || '1';
-    quizGoTo(3);
-  } else if(step===3){
-    QUIZ_DATA.personaje = document.getElementById('q-personaje').value.trim();
-    if(!QUIZ_DATA.personaje){ document.getElementById('q-personaje').focus(); alert('¿Qué personaje quieres?'); return; }
-    QUIZ_DATA.detalles = document.getElementById('q-detalles').value.trim();
-    quizGoTo(4);
-  } else if(step===4){
-    QUIZ_DATA.nombre = document.getElementById('q-nombre').value.trim();
-    if(!QUIZ_DATA.nombre){ document.getElementById('q-nombre').focus(); alert('Dinos tu nombre.'); return; }
-    QUIZ_DATA.tel = document.getElementById('q-tel').value.trim();
-    QUIZ_DATA.email = document.getElementById('q-email').value.trim();
-    if(!QUIZ_DATA.tel && !QUIZ_DATA.email){ alert('Pon al menos un teléfono o email para contactarte.'); return; }
-    quizBuildSummary();
+  if(step===1){if(!QUIZ_DATA.universo){alert('Elige un universo.');return}quizGoTo(2)}
+  else if(step===2){if(!QUIZ_DATA.tamano){alert('Elige un tamaño.');return}QUIZ_DATA.cantidad=document.getElementById('q-cantidad').value||'1';quizGoTo(3)}
+  else if(step===3){QUIZ_DATA.personaje=document.getElementById('q-personaje').value.trim();if(!QUIZ_DATA.personaje){alert('¿Qué personaje quieres?');return}QUIZ_DATA.detalles=document.getElementById('q-detalles').value.trim();quizGoTo(4)}
+  else if(step===4){
+    QUIZ_DATA.nombre=document.getElementById('q-nombre').value.trim();if(!QUIZ_DATA.nombre){alert('Dinos tu nombre.');return}
+    QUIZ_DATA.tel=document.getElementById('q-tel').value.trim();QUIZ_DATA.email=document.getElementById('q-email').value.trim();
+    if(!QUIZ_DATA.tel&&!QUIZ_DATA.email){alert('Pon teléfono o email.');return}
+    document.getElementById('quizSummary').innerHTML=[
+      ['Universo',QUIZ_DATA.universoIcon+' '+QUIZ_DATA.universo],['Personaje',QUIZ_DATA.personaje],
+      ['Tamaño',QUIZ_DATA.tamano],['Cantidad',QUIZ_DATA.cantidad],['Nombre',QUIZ_DATA.nombre],
+      ['Contacto',QUIZ_DATA.tel||QUIZ_DATA.email]
+    ].map(function(r){return '<div class="quiz-sum-row"><div class="quiz-sum-key">'+r[0]+'</div><div class="quiz-sum-val">'+r[1]+'</div></div>'}).join('');
     quizGoTo(5);
   }
 }
-
-function quizBack(step){
-  quizGoTo(step-1);
-}
-
-function quizBuildSummary(){
-  var rows = [
-    ['Universo', QUIZ_DATA.universoIcon+' '+QUIZ_DATA.universo],
-    ['Personaje', QUIZ_DATA.personaje],
-    ['Tamaño', QUIZ_DATA.tamano],
-    ['Cantidad', QUIZ_DATA.cantidad+' figura'+(QUIZ_DATA.cantidad!=='1'?'s':'')],
-    ['Detalles', QUIZ_DATA.detalles || '—'],
-    ['Nombre', QUIZ_DATA.nombre],
-    ['Contacto', QUIZ_DATA.tel || QUIZ_DATA.email],
-  ];
-  document.getElementById('quizSummary').innerHTML = rows.map(function(r){
-    return '<div class="quiz-sum-row"><span class="quiz-sum-key">'+r[0]+'</span><span class="quiz-sum-val">'+r[1]+'</span></div>';
-  }).join('');
-}
-
-function quizBuildMsg(){
-  const numPedido = 'FIG-' + Date.now().toString().slice(-6);
-  var lines = [
-    '✅ ¡PEDIDO RECIBIDO!',
-    '',
-    '📦 ID de pedido: #'+numPedido,
-    '👤 Cliente: '+QUIZ_DATA.nombre,
-    QUIZ_DATA.tel ? '📱 Teléfono: '+QUIZ_DATA.tel : '',
-    QUIZ_DATA.email ? '📧 Email: '+QUIZ_DATA.email : '',
-    '',
-    '── Figura ──',
-    '🎬 Universo: '+QUIZ_DATA.universo,
-    '⚡ Personaje: '+QUIZ_DATA.personaje,
-    '📏 Tamaño: '+QUIZ_DATA.tamano,
-    '🔢 Cantidad: '+QUIZ_DATA.cantidad,
-    QUIZ_DATA.detalles ? '📝 Detalles: '+QUIZ_DATA.detalles : '',
-    '',
-    '🔔 Consulta el estado de tu pedido en tiempo real:',
-    '👉 https://t.me/Webjrr_bot',
-    '',
-    'Escribe /consultarpedido en el bot e introduce tu número de pedido: #'+numPedido,
-    '',
-    '¡Gracias por confiar en Figuras 3D!'
-  ];
-  return lines.filter(function(l){ return l!==null&&l!==undefined; }).join('\n');
-}
-
+function quizBack(step){quizGoTo(step-1)}
 function quizSend(type){
-  var msg = quizBuildMsg();
-  if(type==='wa'){
-    window.open('https://wa.me/34618648370?text='+encodeURIComponent(msg),'_blank');
-  } else {
-    var subj = encodeURIComponent('Pedido Figuras 3D · '+QUIZ_DATA.personaje+' · '+QUIZ_DATA.nombre);
-    window.location.href = 'mailto:jaimerivasgranada@gmail.com?subject='+subj+'&body='+encodeURIComponent(msg);
-  }
-  document.getElementById('quizWrap').querySelector('.quiz-progress').style.display='none';
-  document.querySelectorAll('.quiz-panel').forEach(function(p){ p.classList.remove('active'); });
+  var lines=['🎯 PEDIDO ESPECIAL — Figuras 3D','','Universo: '+QUIZ_DATA.universo,'Personaje: '+QUIZ_DATA.personaje,'Tamaño: '+QUIZ_DATA.tamano,'Cantidad: '+QUIZ_DATA.cantidad];
+  if(QUIZ_DATA.detalles)lines.push('Detalles: '+QUIZ_DATA.detalles);
+  lines.push('','Nombre: '+QUIZ_DATA.nombre);if(QUIZ_DATA.tel)lines.push('Tel: '+QUIZ_DATA.tel);if(QUIZ_DATA.email)lines.push('Email: '+QUIZ_DATA.email);
+  var msg=lines.join('\n');
+  if(type==='wa')window.open('https://wa.me/34618648370?text='+encodeURIComponent(msg),'_blank');
+  else window.location.href='mailto:jaimerivasgranada@gmail.com?subject='+encodeURIComponent('Pedido Especial — '+QUIZ_DATA.personaje)+'&body='+encodeURIComponent(msg);
+  document.querySelectorAll('.quiz-panel').forEach(function(p){p.style.display='none'});
+  document.querySelector('.quiz-progress').style.display='none';
   document.getElementById('quizSentOk').style.display='block';
 }
 
-/* ── REVEAL ── */
-function setupReveal(){
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach((en,i)=>{
-      if(en.isIntersecting){setTimeout(()=>en.target.classList.add('show'),i*80);obs.unobserve(en.target);}
+/* ═══ BUILD PACKS ═══ */
+function buildPacks(){
+  var grid=document.getElementById('packsGrid');
+  if(!grid) return;
+  var errImg="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect fill='%231a1a1a' width='120' height='120'/%3E%3Ctext x='50%25' y='50%25' fill='%23888' font-size='12' text-anchor='middle' dominant-baseline='middle'%3E?%3C/text%3E%3C/svg%3E";
+  grid.innerHTML=PACKS.map(function(pack){
+    var figsHtml=pack.figures.map(function(f){
+      return '<div class="pack-fig"><img src="'+f.img+'" alt="'+f.name+'" onerror="this.src=\''+errImg+'\'"><div class="pack-fig-name">'+f.name+'</div></div>';
+    }).join('');
+    var savePercent=Math.round((1-pack.packPrice/pack.individualPrice)*100);
+    return '<div class="pack-card reveal" data-pack="'+pack.id+'" style="--cols:'+pack.cols+'">'+
+      '<div class="pack-imgs">'+figsHtml+'</div>'+
+      '<div class="pack-body">'+
+        '<div class="pack-universe" style="color:'+pack.uColor+'">'+pack.universe+'</div>'+
+        '<div class="pack-name">🎂 '+pack.name+'</div>'+
+        '<div class="pack-desc">'+pack.desc+'</div>'+
+        '<div class="pack-pricing">'+
+          '<div class="pack-price">'+pack.packPrice.toFixed(2)+' €</div>'+
+          '<div class="pack-old-price">'+pack.individualPrice.toFixed(2)+' €</div>'+
+          '<div class="pack-save">-'+savePercent+'%</div>'+
+        '</div>'+
+        '<button class="pack-add" onclick="addPackToCart(\''+pack.id+'\',event)">🎂 Añadir Pack al Carrito</button>'+
+      '</div></div>';
+  }).join('');
+}
+
+function addPackToCart(packId,event){
+  var pack=PACKS.find(function(p){return p.id===packId});
+  if(!pack)return;
+  /* confetti burst */
+  if(event){
+    var btn=event.target.closest('.pack-add');
+    var r=btn.getBoundingClientRect();
+    var colors=['#FFD600','#FF1744','#00E5FF','#D500F9','#00E676','#FF9100'];
+    for(var i=0;i<12;i++){
+      var c=document.createElement('div');
+      c.textContent=['🎉','✨','🎂','⭐','🎈','🎁'][i%6];
+      var angle=(i/12)*Math.PI*2;
+      var dist=60+Math.random()*40;
+      c.style.cssText='position:fixed;top:'+(r.top+r.height/2)+'px;left:'+(r.left+r.width/2)+'px;font-size:'+(12+Math.random()*10)+'px;pointer-events:none;z-index:9999;animation:confettiBurst .8s ease-out forwards;';
+      c.style.setProperty('--cx',Math.cos(angle)*dist+'px');
+      c.style.setProperty('--cy',Math.sin(angle)*dist+'px');
+      c.style.setProperty('--cr',(Math.random()*360)+'deg');
+      document.body.appendChild(c);
+      setTimeout((function(el){return function(){el.remove()}})(c),800);
+    }
+    /* also fly to cart */
+    var cf=document.getElementById('cartFloat');
+    var r2=cf.getBoundingClientRect();
+    var fl=document.createElement('div');
+    fl.textContent='🎂';fl.style.cssText='position:fixed;top:'+r.top+'px;left:'+r.left+'px;font-size:24px;pointer-events:none;z-index:9999;animation:flyToCart .7s ease-in-out forwards;';
+    fl.style.setProperty('--dx',(r2.left-r.left)+'px');fl.style.setProperty('--dy',(r2.top-r.top)+'px');
+    document.body.appendChild(fl);setTimeout(function(){fl.remove()},700);
+  }
+  var cartKey='pack-'+packId;
+  var ex=CART.find(function(x){return x.cartKey===cartKey});
+  if(ex){ex.qty++}
+  else{
+    CART.push({
+      id:packId,cartKey:cartKey,
+      name:'🎂 '+pack.name+' ('+pack.figures.length+' figs 5cm)',
+      price:pack.packPrice,img:pack.figures[0].img,qty:1,size:'pack'
     });
-  },{threshold:.08});
-  document.querySelectorAll('.wr').forEach(el=>obs.observe(el));
-}
-
-/* ── CERRAR AL CLICK FUERA ── */
-document.addEventListener('click',e=>{
-  const panel=document.getElementById('cartPanel');
-  const btn=document.getElementById('cartFloat');
-  if(panel.classList.contains('open')&&!panel.contains(e.target)&&!btn.contains(e.target)) panel.classList.remove('open');
-  const overlay=document.getElementById('popupOverlay');
-  if(overlay.classList.contains('open')&&e.target===overlay) closePopup();
-});
-
-/* ── GESTIÓN DE STOCK ── */
-var STOCK_DB = {
-  'luke': { disponible: true, cantidad: 5 },
-  'darth': { disponible: true, cantidad: 3 },
-  'leia': { disponible: true, cantidad: 4 },
-  'trooper': { disponible: true, cantidad: 8 },
-  'chewbacca': { disponible: true, cantidad: 2 },
-  'superman': { disponible: true, cantidad: 6 },
-  'batman': { disponible: true, cantidad: 4 },
-  'ironman': { disponible: true, cantidad: 3 },
-  'venom': { disponible: true, cantidad: 5 },
-  'spiderman-classic': { disponible: true, cantidad: 7 },
-  'severus': { disponible: true, cantidad: 3 },
-  'draco': { disponible: true, cantidad: 2 },
-  'llavero_superman': { disponible: true, cantidad: 15 },
-  'llavero_flash': { disponible: true, cantidad: 12 },
-  'llavero_linterna': { disponible: true, cantidad: 10 },
-  'llavero_batman': { disponible: true, cantidad: 20 },
-  'llavero_dc': { disponible: true, cantidad: 18 },
-  'llavero_jl': { disponible: true, cantidad: 8 },
-  'llavero_ww': { disponible: true, cantidad: 14 },
-  'llavero_aquaman': { disponible: true, cantidad: 11 }
-};
-
-// Cargar stock desde localStorage
-function loadStock() {
-  const saved = localStorage.getItem('figuras3d_stock');
-  if (saved) {
-    try {
-      STOCK_DB = JSON.parse(saved);
-    } catch(e) {
-      console.error('Error cargando stock:', e);
-    }
   }
+  renderCart();
 }
 
-// Guardar stock en localStorage
-function saveStock() {
-  localStorage.setItem('figuras3d_stock', JSON.stringify(STOCK_DB));
-}
-
-// Verificar si un producto está disponible
-function isAvailable(id) {
-  return STOCK_DB[id] && STOCK_DB[id].disponible && STOCK_DB[id].cantidad > 0;
-}
-
-// Actualizar badge de stock en producto
-function updateStockBadge(id) {
-  const card = document.querySelector(`.c[data-id="${id}"]`);
-  if (!card) return;
-  
-  let badge = card.querySelector('.stock-badge');
-  if (!badge) {
-    badge = document.createElement('div');
-    badge.className = 'stock-badge';
-    card.querySelector('.c-img-w').appendChild(badge);
-  }
-  
-  const stock = STOCK_DB[id];
-  if (!stock || !stock.disponible || stock.cantidad === 0) {
-    badge.textContent = 'AGOTADO';
-    badge.className = 'stock-badge stock-out';
-    card.classList.add('out-of-stock');
-  } else if (stock.cantidad <= 2) {
-    badge.textContent = `¡ÚLTIMAS ${stock.cantidad}!`;
-    badge.className = 'stock-badge stock-low';
-    card.classList.remove('out-of-stock');
-  } else {
-    badge.textContent = 'DISPONIBLE';
-    badge.className = 'stock-badge stock-ok';
-    card.classList.remove('out-of-stock');
-  }
-}
-
-// Panel de administración
-function openAdminPanel() {
-  const pwd = prompt('Contraseña de administrador:');
-  if (pwd !== 'figuras2026') {
-    alert('Contraseña incorrecta');
-    return;
-  }
-  
-  let html = '<div style="max-height:70vh;overflow-y:auto;"><table style="width:100%;border-collapse:collapse;">';
-  html += '<tr style="background:#1a1a2e;"><th style="padding:12px;text-align:left;border-bottom:2px solid var(--accent);">Producto</th><th style="padding:12px;text-align:center;border-bottom:2px solid var(--accent);">Stock</th><th style="padding:12px;text-align:center;border-bottom:2px solid var(--accent);">Estado</th><th style="padding:12px;text-align:center;border-bottom:2px solid var(--accent);">Acciones</th></tr>';
-  
-  Object.keys(STOCK_DB).forEach(id => {
-    const item = STOCK_DB[id];
-    const statusColor = item.disponible ? (item.cantidad > 2 ? '#22c55e' : '#f59e0b') : '#ef4444';
-    html += `<tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:12px;">${id}</td>
-      <td style="padding:12px;text-align:center;"><input type="number" id="qty-${id}" value="${item.cantidad}" min="0" style="width:60px;padding:6px;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:6px;text-align:center;"></td>
-      <td style="padding:12px;text-align:center;"><span style="color:${statusColor};font-weight:600;">${item.disponible && item.cantidad > 0 ? 'DISPONIBLE' : 'AGOTADO'}</span></td>
-      <td style="padding:12px;text-align:center;">
-        <button onclick="toggleStock('${id}')" style="padding:6px 12px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer;margin:0 4px;">${item.disponible ? 'Marcar agotado' : 'Marcar disponible'}</button>
-        <button onclick="updateQuantity('${id}')" style="padding:6px 12px;background:var(--green);color:#fff;border:none;border-radius:6px;cursor:pointer;margin:0 4px;">Actualizar</button>
-      </td>
-    </tr>`;
+/* ═══ ADMIN ═══ */
+function openAdminPanel(){
+  var pwd=prompt('Contraseña:');if(pwd!=='figuras2026'){alert('Incorrecta');return}
+  var h='<div style="max-height:70vh;overflow-y:auto"><table style="width:100%;border-collapse:collapse;font-family:Space Mono,monospace;font-size:12px">';
+  h+='<tr style="background:#1a1a1a"><th style="padding:10px;text-align:left;border-bottom:2px solid var(--yellow)">ID</th><th style="padding:10px;text-align:center;border-bottom:2px solid var(--yellow)">Stock</th><th style="padding:10px;text-align:center;border-bottom:2px solid var(--yellow)">Estado</th><th style="padding:10px;text-align:center;border-bottom:2px solid var(--yellow)">Acciones</th></tr>';
+  Object.keys(STOCK_DB).forEach(function(id){
+    var i=STOCK_DB[id];var c=i.disponible?(i.cantidad>2?'var(--green)':'var(--orange)'):'var(--red)';
+    h+='<tr style="border-bottom:1px solid var(--border)"><td style="padding:10px">'+id+'</td><td style="padding:10px;text-align:center"><input type="number" id="qty-'+id+'" value="'+i.cantidad+'" min="0" style="width:55px;padding:5px;background:var(--bg);border:1px solid var(--border);color:var(--text);text-align:center"></td><td style="padding:10px;text-align:center;color:'+c+';font-weight:700">'+(i.disponible&&i.cantidad>0?'OK':'AGO')+'</td><td style="padding:10px;text-align:center"><button onclick="toggleStock(\''+id+'\')" style="padding:5px 10px;background:var(--cyan);color:#000;border:none;cursor:pointer;margin:2px;font-weight:700">'+(i.disponible?'Agotar':'Activar')+'</button><button onclick="updateQuantity(\''+id+'\')" style="padding:5px 10px;background:var(--green);color:#000;border:none;cursor:pointer;margin:2px;font-weight:700">Guardar</button></td></tr>';
   });
-  
-  html += '</table></div>';
-  html += '<div style="margin-top:20px;text-align:center;"><button onclick="closeAdminPanel()" style="padding:10px 24px;background:var(--red);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">Cerrar</button></div>';
-  
-  const overlay = document.createElement('div');
-  overlay.id = 'adminOverlay';
-  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
-  
-  const panel = document.createElement('div');
-  panel.style.cssText = 'background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px;max-width:900px;width:100%;';
-  panel.innerHTML = '<h2 style="margin:0 0 20px;font-family:Orbitron,sans-serif;color:var(--accent);">📦 ADMINISTRACIÓN DE STOCK</h2>' + html;
-  
-  overlay.appendChild(panel);
-  document.body.appendChild(overlay);
+  h+='</table></div><div style="text-align:center;margin-top:16px"><button onclick="closeAdminPanel()" style="padding:10px 24px;background:var(--red);color:#fff;border:none;cursor:pointer;font-family:Bangers,cursive;font-size:16px">Cerrar</button></div>';
+  var ov=document.createElement('div');ov.id='adminOverlay';ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px';
+  var pn=document.createElement('div');pn.style.cssText='background:var(--card);border:3px solid var(--yellow);box-shadow:8px 8px 0 var(--red);padding:24px;max-width:900px;width:100%';
+  pn.innerHTML='<h2 style="font-family:Bangers,cursive;color:var(--yellow);text-shadow:2px 2px 0 var(--red);margin:0 0 16px">📦 ADMIN STOCK</h2>'+h;
+  ov.appendChild(pn);document.body.appendChild(ov);
 }
+function closeAdminPanel(){var o=document.getElementById('adminOverlay');if(o)o.remove()}
+function toggleStock(id){STOCK_DB[id].disponible=!STOCK_DB[id].disponible;if(!STOCK_DB[id].disponible)STOCK_DB[id].cantidad=0;saveStock();updateStockBadge(id);closeAdminPanel();openAdminPanel()}
+function updateQuantity(id){var v=parseInt(document.getElementById('qty-'+id).value)||0;STOCK_DB[id].cantidad=v;STOCK_DB[id].disponible=v>0;saveStock();updateStockBadge(id);alert(id+' → '+v);closeAdminPanel();openAdminPanel()}
 
-function closeAdminPanel() {
-  const overlay = document.getElementById('adminOverlay');
-  if (overlay) overlay.remove();
-}
-
-function toggleStock(id) {
-  STOCK_DB[id].disponible = !STOCK_DB[id].disponible;
-  if (!STOCK_DB[id].disponible) {
-    STOCK_DB[id].cantidad = 0;
-  }
-  saveStock();
-  updateStockBadge(id);
-  closeAdminPanel();
-  openAdminPanel();
-}
-
-function updateQuantity(id) {
-  const input = document.getElementById('qty-' + id);
-  const newQty = parseInt(input.value) || 0;
-  STOCK_DB[id].cantidad = newQty;
-  STOCK_DB[id].disponible = newQty > 0;
-  saveStock();
-  updateStockBadge(id);
-  alert(`Stock actualizado: ${id} → ${newQty} unidades`);
-  closeAdminPanel();
-  openAdminPanel();
-}
-
-/* ── INIT ── */
-document.addEventListener('DOMContentLoaded',()=>{
-  loadStock();
-  buildCatalog();
-  
-  // Actualizar badges de stock
-  Object.keys(STOCK_DB).forEach(id => updateStockBadge(id));
-  
-  const waBtn = document.getElementById('popupWaBtn');
-  const emailBtn = document.getElementById('popupEmailBtn');
-  
-  if(waBtn) waBtn.onclick = ()=>sendFromPopup('wa');
-  if(emailBtn) emailBtn.onclick = ()=>sendFromPopup('email');
-
-  setupReveal();
-  
-  // Detectar combinación de teclas Ctrl+Shift+A para admin
-  document.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && e.shiftKey && e.key === 'A') {
-      e.preventDefault();
-      openAdminPanel();
-    }
-  });
-});
-
-/* ── Hero figure rotator ── */
+/* ═══ SHOWCASE ROTATOR ═══ */
 (function(){
-  var figures = [
-    { bg: 'linear-gradient(145deg,#0f0f1a,#1a1a2e)', glow: 'rgba(255,180,0,.28)' },
-    { bg: 'linear-gradient(145deg,#080808,#141414)', glow: 'rgba(255,180,0,.28)' },
-    { bg: 'linear-gradient(145deg,#141420,#1e1e2e)', glow: 'rgba(255,180,0,.28)' },
-    { bg: 'linear-gradient(145deg,#0a0a18,#141428)', glow: 'rgba(255,180,0,.28)' },
-    { bg: 'linear-gradient(145deg,#1a0505,#250808)', glow: 'rgba(220,50,50,.3)' },
-    { bg: 'linear-gradient(145deg,#050a1a,#0a1428)', glow: 'rgba(80,110,255,.3)' },
-    { bg: 'linear-gradient(145deg,#070710,#0d0d18)', glow: 'rgba(80,110,255,.3)' },
-    { bg: 'linear-gradient(145deg,#0a0a0f,#14141e)', glow: 'rgba(100,80,180,.3)' },
-    { bg: 'linear-gradient(145deg,#050505,#0f0f0f)', glow: 'rgba(220,50,50,.35)' },
-    { bg: 'linear-gradient(145deg,#0f0f1a,#1a1a2e)', glow: 'rgba(150,150,150,.25)' },
-    { bg: 'linear-gradient(145deg,#1a0a05,#281410)', glow: 'rgba(210,120,50,.3)' },
-    { bg: 'linear-gradient(145deg,#000000,#0a0a0a)', glow: 'rgba(200,200,220,.25)' },
-    { bg: 'linear-gradient(145deg,#1a0000,#2a0505)', glow: 'rgba(255,50,50,.35)' }
-  ];
-  var current = 0;
-  var card  = document.getElementById('heroCard');
-  var glow  = document.getElementById('heroGlow');
-  var slides, dots;
-
-  function goTo(n){
-    slides[current].classList.remove('hf-active');
-    dots[current].classList.remove('hf-dot-on');
-    current = ((n % figures.length) + figures.length) % figures.length;
-    slides[current].classList.add('hf-active');
-    dots[current].classList.add('hf-dot-on');
-    if(card) card.style.background = figures[current].bg;
-    if(glow) glow.style.background = 'radial-gradient(circle,' + figures[current].glow + ' 0%,transparent 70%)';
-  }
-
-  document.addEventListener('DOMContentLoaded', function(){
-    slides = document.querySelectorAll('.hf-slide');
-    dots   = document.querySelectorAll('.hf-dot');
-    if(!slides.length) return;
-    // set initial card bg
-    if(card) card.style.background = figures[0].bg;
-    // dot click
-    dots.forEach(function(d){ d.addEventListener('click', function(){ goTo(+d.dataset.i); }); });
-    // auto rotate every 10s
-    setInterval(function(){ goTo(current + 1); }, 10000);
+  var slides,dots,cur=0;
+  document.addEventListener('DOMContentLoaded',function(){
+    slides=document.querySelectorAll('.showcase-slide');
+    var dotsC=document.getElementById('showcaseDots');
+    if(!slides.length||!dotsC)return;
+    for(var i=0;i<slides.length;i++){
+      var d=document.createElement('div');d.className='showcase-dot'+(i===0?' on':'');d.dataset.i=i;
+      d.addEventListener('click',function(){goTo(+this.dataset.i)});dotsC.appendChild(d);
+    }
+    dots=document.querySelectorAll('.showcase-dot');
+    setInterval(function(){goTo(cur+1)},5000);
   });
+  function goTo(n){
+    slides[cur].classList.remove('active');dots[cur].classList.remove('on');
+    cur=((n%slides.length)+slides.length)%slides.length;
+    slides[cur].classList.add('active');dots[cur].classList.add('on');
+  }
 })();
+
+/* ═══ SCROLL REVEAL ═══ */
+function setupReveal(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target)}});
+  },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+}
+
+/* ═══ INIT ═══ */
+document.addEventListener('DOMContentLoaded',function(){
+  loadStock();
+  buildFilters();
+  buildCatalog();
+  buildPacks();
+  Object.keys(STOCK_DB).forEach(function(id){updateStockBadge(id)});
+  
+  var waBtn=document.getElementById('popupWaBtn');
+  if(waBtn)waBtn.onclick=function(){sendFromPopup('wa')};
+  
+  // Staggered reveal for product cards
+  setTimeout(function(){
+    document.querySelectorAll('.p-card.reveal').forEach(function(c,i){
+      c.style.transitionDelay=(i*0.06)+'s';
+    });
+    setupReveal();
+  },100);
+  
+  document.addEventListener('keydown',function(e){if(e.ctrlKey&&e.shiftKey&&e.key==='A'){e.preventDefault();openAdminPanel()}});
+});
 </script>
 </body>
 </html>
